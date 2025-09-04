@@ -53,4 +53,5 @@ OpenAPI로 날씨를 자동 기록하고, 두 사람이 서로의 하루를 공�
 ---
 
 ## 📂 프로젝트 구조 (예시)
-ERD 작성중 ...
+<img width="1372" height="683" alt="image" src="https://github.com/user-attachments/assets/9cb4a1ac-313d-4524-ba31-dbb9f575ab12" />
+
