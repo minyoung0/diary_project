@@ -10,6 +10,7 @@ OpenAPI로 날씨를 자동 기록하고, 두 사람이 서로의 하루를 공�
 ### 🔑 회원가입 & 로그인
 - 사용자는 **아이디, 이름, 이메일, 비밀번호**를 입력하여 회원가입
 - 이메일은 정규식을 활용한 유효성 검증
+- 비밀번호는 8자리 이상, 영어 대소문자,숫자 사용 필수 조건
 - 아이디 16자, 이름 10글자, 닉네임 10자 제한
 - 로그인은 아이디 & 비밀번호 일치 시 가능  
 - 초기 가입 후 커플 인증번호를 통해 커플 매치
@@ -58,5 +59,6 @@ OpenAPI로 날씨를 자동 기록하고, 두 사람이 서로의 하루를 공�
 ---
 
 ## 📂 프로젝트 구조 (예시)
-<img width="1087" height="747" alt="image" src="https://github.com/user-attachments/assets/35df8a65-d65b-49be-bca5-d83fc1a78081" />
+<img width="1077" height="733" alt="image" src="https://github.com/user-attachments/assets/fc6df2ec-b480-4a2d-a1e6-2c48c88ba22a" />
+
 
