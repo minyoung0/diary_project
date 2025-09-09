@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String mainPage(Model model){
+    public String mainPage(){
         return "index";
+    }
+
+    @GetMapping("/loginPage")
+    public String loginPage(Model model){
+        return "/user/login";
     }
 }
