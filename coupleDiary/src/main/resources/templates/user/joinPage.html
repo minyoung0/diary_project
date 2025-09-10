@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회원가입</title>
+    <style>
+        :root { --card-w: 360px; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+            background:#f6f7fb; color:#1f2937; display:grid; place-items:center; min-height:100vh;
+        }
+        .card {
+            width:min(92vw, var(--card-w)); padding:28px 24px; background:#fff;
+            border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.06);
+        }
+        h1 { font-size:20px; margin:0 0 16px; }
+        form { display:grid; gap:14px; }
+        label { font-size:13px; color:#374151; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
+            width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px; font-size:14px; outline:none;
+        }
+        input:focus { border-color:#6366f1; box-shadow:0 0 0 3px rgba(99,102,241,.15); }
+        .row { display:flex; gap:10px; }
+        .row > div { flex:1; }
+        .hint { font-size:12px; color:#6b7280; margin-top:4px; }
+        button {
+            width:100%; padding:12px; border:0; border-radius:8px; cursor:pointer;
+            background:#111827; color:#fff; font-weight:600; font-size:14px;
+        }
+        .muted { font-size:13px; color:#6b7280; text-align:center; margin-top:6px; }
+        a { color:#4f46e5; text-decoration:none; } a:hover{text-decoration:underline;}
+    </style>
 </head>
 <body>
+<main class="card" role="main" aria-labelledby="title">
+    <h1 id="title">회원가입</h1>
 
+    <!-- Spring Security 사용 시 CSRF 히든필드 추가 -->
+    <!-- <input type="hidden" name="_csrf" value="${_csrf.token}"> -->
+
+    <!-- Thymeleaf 사용 시 action을 th:action으로 바꿔도 됩니다. -->
+    <form method="post" action="/signup" autocomplete="on" novalidate>
+        <div class="row">
+            <div>
+                <label for="username">아이디(로그인용)</label>
+                <input id="username" name="username" type="text"
+                       minlength="2" maxlength="20" required
+                       pattern="[A-Za-z0-9_]{2,20}" />
+                <div class="hint">영문/숫자/밑줄, 2–20자</div>
+            </div>
+            <div>
+                <label for="nickname">닉네임</label>
+                <input id="nickname" name="nickname" type="text"
+                       minlength="2" maxlength="20" required />
+            </div>
+        </div>
+
+        <div>
+            <label for="email">이메일</label>
+            <input id="email" name="email" type="email" maxlength="255" required />
+        </div>
+
+        <div>
+            <label for="password">비밀번호</label>
+            <input id="password" name="password" type="password"
+                   minlength="8" maxlength="64" required
+                   pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}"
+                   placeholder="영문/숫자/특수문자 포함 8자 이상" />
+            <div class="hint">영문·숫자·특수문자 각 1자 이상 포함</div>
+        </div>
+
+        <div>
+            <label for="passwordConfirm">비밀번호 확인</label>
+            <input id="passwordConfirm" type="password" minlength="8" maxlength="64" required />
+        </div>
+
+        <div>
+            <label for="profile_img">프로필 이미지(URL 선택)</label>
+            <input id="profile_img" name="profile_img" type="url" placeholder="https://example.com/image.jpg" />
+            <div class="hint">파일 업로드로 바꾸려면 form에 enctype="multipart/form-data" 설정</div>
+        </div>
+
+        <button type="submit">가입하기</button>
+        <p class="muted">이미 계정이 있나요? <a href="/login">로그인</a></p>
+    </form>
+</main>
+
+<script>
+    // 간단한 비밀번호 일치 검사(클라이언트)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        const pw = document.getElementById('password').value;
+        const pw2 = document.getElementById('passwordConfirm').value;
+        if (pw !== pw2) {
+            e.preventDefault();
+            alert('비밀번호가 일치하지 않습니다.');
+        }
+    });
+</script>
 </body>
 </html>

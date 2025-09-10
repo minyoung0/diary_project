@@ -15,6 +15,9 @@ public class MainController {
 
     @GetMapping("/loginPage")
     public String loginPage(Model model){
-        return "/user/login";
+        return "user/loginPage";
     }
+
+    @GetMapping("/joinPage")
+    public String joinPage(){return "user/joinPage";}
 }
