@@ -30,49 +30,71 @@
             background:#111827; color:#fff; font-weight:600; font-size:14px;
         }
         .muted { font-size:13px; color:#6b7280; text-align:center; margin-top:6px; }
-        a { color:#4f46e5; text-decoration:none; } a:hover{text-decoration:underline;}
+        a { color:#4f46e5; text-decoration:none; } a:hover{text-decoration:underline}
+        .red-text{color:red;}
+        /* 제출 시도 후에만 invalid 표시 */
+        .was-submitted input:invalid {
+            border-color: red;
+        }
+
+        /* 흔들림 효과 */
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25%     { transform: translateX(-4px); }
+            75%     { transform: translateX(4px); }
+        }
+        .shake { animation: shake .2s 2; }
+        .highlight {
+            border: 2px solid red;
+            animation: flash 0.5s ease-in-out 2;
+        }
+
+        @keyframes flash {
+            0%, 100% { background-color: white; }
+            50% { background-color: #ffe6e6; }
+        }
+
     </style>
 </head>
 <body>
+
 <main class="card" role="main" aria-labelledby="title">
     <h1 id="title">회원가입</h1>
-
-    <!-- Spring Security 사용 시 CSRF 히든필드 추가 -->
-    <!-- <input type="hidden" name="_csrf" value="${_csrf.token}"> -->
-
+    <span class="red-text">*</span>은 필수항목입니다.
     <!-- Thymeleaf 사용 시 action을 th:action으로 바꿔도 됩니다. -->
     <form method="post" action="/signup" autocomplete="on" novalidate>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="row">
             <div>
-                <label for="username">아이디(로그인용)</label>
-                <input id="username" name="username" type="text"
+                <label for="userId">아이디</label><span class="red-text">*</span>
+                <input id="userId" name="userId" type="text"
                        minlength="2" maxlength="20" required
-                       pattern="[A-Za-z0-9_]{2,20}" />
+                       pattern="[A-Za-z0-9_]{2,20}"  th:value="${prev?.userId}"/>
                 <div class="hint">영문/숫자/밑줄, 2–20자</div>
             </div>
             <div>
-                <label for="nickname">닉네임</label>
+                <label for="nickname">닉네임</label><span class="red-text">*</span>
                 <input id="nickname" name="nickname" type="text"
-                       minlength="2" maxlength="20" required />
+                       minlength="2" maxlength="20"  th:value="${prev?.nickname}" required />
             </div>
         </div>
 
         <div>
-            <label for="email">이메일</label>
-            <input id="email" name="email" type="email" maxlength="255" required />
+            <label for="email">이메일</label><span class="red-text">*</span>
+            <input id="email" name="email" type="email" maxlength="255"  th:value="${prev?.email}"required />
         </div>
 
         <div>
-            <label for="password">비밀번호</label>
+            <label for="password">비밀번호</label><span class="red-text">*</span>
             <input id="password" name="password" type="password"
                    minlength="8" maxlength="64" required
                    pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}"
-                   placeholder="영문/숫자/특수문자 포함 8자 이상" />
+                   placeholder="영문/숫자/특수문자 포함 8자 이상"  th:value="${prev?.password}"/>
             <div class="hint">영문·숫자·특수문자 각 1자 이상 포함</div>
         </div>
 
         <div>
-            <label for="passwordConfirm">비밀번호 확인</label>
+            <label for="passwordConfirm">비밀번호 확인</label><span class="red-text">*</span>
             <input id="passwordConfirm" type="password" minlength="8" maxlength="64" required />
         </div>
 
@@ -83,21 +105,53 @@
         </div>
 
         <button type="submit">가입하기</button>
-        <p class="muted">이미 계정이 있나요? <a href="/login">로그인</a></p>
+        <p class="muted">이미 계정이 있나요? <a href="/loginPage">로그인</a></p>
     </form>
 </main>
 
 <script>
-    // 간단한 비밀번호 일치 검사(클라이언트)
     const form = document.querySelector('form');
+    const pw = document.getElementById('password');
+    const pw2 = document.getElementById('passwordConfirm');
+
     form.addEventListener('submit', (e) => {
-        const pw = document.getElementById('password').value;
-        const pw2 = document.getElementById('passwordConfirm').value;
-        if (pw !== pw2) {
-            e.preventDefault();
-            alert('비밀번호가 일치하지 않습니다.');
+        // 비밀번호 일치 커스텀 검증
+        if (pw.value !== pw2.value) {
+            pw2.setCustomValidity('비밀번호가 일치하지 않습니다.');
+        } else {
+            pw2.setCustomValidity('');
+        }
+
+        // 브라우저 유효성 검사 실행
+        if (!form.checkValidity()) {
+            e.preventDefault();                    // 전송 막기
+            form.classList.add('was-submitted');   // 이때부터만 invalid 스타일 적용
+
+            // 첫 번째 invalid 필드 흔들고 포커스
+            const firstInvalid = form.querySelector(':invalid');
+            if (firstInvalid) {
+                firstInvalid.classList.remove('shake'); // 연속 제출 시 애니메이션 재시작 트릭
+                void firstInvalid.offsetWidth;
+                firstInvalid.classList.add('shake');
+                firstInvalid.focus();
+                firstInvalid.reportValidity();       // 기본 메시지 노출(선택)
+            }
         }
     });
+
+    // 사용자가 다시 입력하면 커스텀 에러 해제
+    pw2.addEventListener('input', () => pw2.setCustomValidity(''));
+</script>
+<script th:if="${errormessage}" th:inline="javascript">
+    console.log("이미사용중인 아이디입니다")
+    alert([[${errormessage}]]);
+    const userIdInput = document.getElementById('userId');
+    if (userIdInput) {
+        userIdInput.classList.remove('shake');
+        void userIdInput.offsetWidth;
+        userIdInput.classList.add('shake');
+        userIdInput.focus();
+    }
 </script>
 </body>
 </html>

@@ -15,7 +15,6 @@ public class Auth {
     @Data
     public static class SignUp {
         private String userId;
-        private String username;
         private String nickname;
         private String password;
         private String email;
@@ -24,7 +23,6 @@ public class Auth {
         public MemberEntity toEntity() {
             return MemberEntity.builder()
                     .userId(this.userId)
-                    .username(this.username)
                     .nickname(this.nickname)
                     .password(this.password)
                     .email(this.email)
