@@ -18,14 +18,14 @@ public class MemberService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        this.memberRepository.findByUsername(username)
-                .orElseThrow(()-> new UsernameNotFoundException("couldn't find user ->"+username));
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        this.memberRepository.findByUserId(userId)
+                .orElseThrow(()-> new UsernameNotFoundException("couldn't find user ->"+userId));
         return null;
     }
 
     public MemberEntity register(Auth.SignUp member){
-        boolean exist = this.memberRepository.existsbyUsername(member.getUsername());
+        boolean exist = this.memberRepository.existsByUserId(member.getUserId());
         if(exist) {
             throw new RuntimeException("이미 사용 중인 아이디입니다.");
         }

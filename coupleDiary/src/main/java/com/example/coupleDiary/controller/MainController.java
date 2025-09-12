@@ -20,4 +20,6 @@ public class MainController {
 
     @GetMapping("/joinPage")
     public String joinPage(){return "user/joinPage";}
+
+
 }

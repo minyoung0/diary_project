@@ -8,6 +8,7 @@
     <div id="body-frame">
         <a href="/loginPage">로그인</a>
     </div>
-
+    <!-- 플래시 메시지 출력 -->
+    <div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
 </body>
 </html>

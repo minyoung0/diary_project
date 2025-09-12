@@ -1,13 +1,13 @@
 package com.example.coupleDiary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,19 +16,29 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="tb_user")
+@Entity
+@Table(name="tb_user")
 public class MemberEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // DB PK
+    private Long id;   // 내부 식별자 (AUTO_INCREMENT)
 
-    private String username;
+    @Column(name="user_id",nullable = false)
+    private String userId;
     private String nickname;
     private String email;
     private String password;
-    private String createdAt;
-    private String updatedAt;
+
+    @CreationTimestamp
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name="profile_img")
     private String profileImg;
 
     @Override
@@ -54,5 +64,10 @@ public class MemberEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    @Override
+    public String getUsername() {
+        return this.userId;  // username 대신 userId 사용
     }
 }
