@@ -39,7 +39,7 @@
 <main class="card" role="main" aria-labelledby="title">
     <h1 id="title">로그인</h1>
 
-    <form method="post" action="/login" autocomplete="on">
+    <form id="loginForm">
         <!-- (Spring Security) CSRF 필요 시 사용
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         -->
@@ -58,5 +58,23 @@
         <p class="muted">아직 계정이 없나요? <a href="/joinPage">회원가입</a></p>
     </form>
 </main>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const body = JSON.stringify({
+            userId: document.getElementById('id').value,
+            password: document.getElementById('password').value
+        });
+        // const res = await fetch('/signin', {
+        //     method: 'POST',
+        //     headers: {'Content-Type': 'application/json'},
+        //     body
+        // });
+        // 서버가 302 + Set-Cookie로 응답하면 location으로 이동
+        //if (res.status === 303 ||res.status === 302 ) location.href = '/index';
+        const res = await fetch('/signin', { method:'POST', headers:{'Content-Type':'application/json'}, body });
+        if (res.ok) location.href = '/';
+    });
+</script>
 </body>
 </html>

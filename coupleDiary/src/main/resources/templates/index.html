@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>🧑🏻‍❤️‍🧑🏻coupleDiary🧑🏻‍❤️‍🧑🏻</title>
 </head>
 <body>
-    <div id="body-frame">
-        <a href="/loginPage">로그인</a>
-    </div>
+<div id="body-frame">
+    <!-- 로그인 안 한 사용자 -->
+    <a href="/loginPage" sec:authorize="isAnonymous()">로그인</a>
+    <!-- 로그인 한 사용자 -->
+    <a href="/logout" sec:authorize="isAuthenticated()">로그아웃</a>
+</div>
     <!-- 플래시 메시지 출력 -->
     <div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
 </body>
