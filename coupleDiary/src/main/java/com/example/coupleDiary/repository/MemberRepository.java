@@ -1,4 +1,4 @@
-package com.example.coupleDiary.persist;
+package com.example.coupleDiary.repository;
 
 import com.example.coupleDiary.model.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

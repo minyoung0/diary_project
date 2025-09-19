@@ -2,7 +2,7 @@ package com.example.coupleDiary.service;
 
 import com.example.coupleDiary.model.Auth;
 import com.example.coupleDiary.model.MemberEntity;
-import com.example.coupleDiary.persist.MemberRepository;
+import com.example.coupleDiary.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
