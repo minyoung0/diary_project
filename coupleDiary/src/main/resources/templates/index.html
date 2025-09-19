@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
+
 <head>
     <meta charset="UTF-8">
     <title>🧑🏻‍❤️‍🧑🏻coupleDiary🧑🏻‍❤️‍🧑🏻</title>
@@ -11,8 +13,23 @@
     <a href="/loginPage" sec:authorize="isAnonymous()">로그인</a>
     <!-- 로그인 한 사용자 -->
     <a href="/logout" sec:authorize="isAuthenticated()">로그아웃</a>
+
 </div>
+    <div id="demo-mobile-month-view"></div>
+<!-- 달력 -->
+
     <!-- 플래시 메시지 출력 -->
     <div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
+<div id='calendar'></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    });
+
+</script>
 </body>
 </html>
