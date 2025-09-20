@@ -5,6 +5,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class TokenProvider {
@@ -111,9 +113,21 @@ public class TokenProvider {
         try {
             Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token);
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            return false;
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            // 서명/포맷 문제 (secret 불일치 포함)
+            log.warn("[JWT] 잘못된 서명/형식", e);
+            System.out.println("[JWT] 잘못된 서명/형식");
+        } catch (ExpiredJwtException e) {
+            log.warn("[JWT] 만료됨", e);
+            System.out.println("[JWT] 만료됨");
+        } catch (UnsupportedJwtException e) {
+            log.warn("[JWT] 지원하지 않는 토큰", e);
+            System.out.println("[JWT] 지원하지 않음");
+        } catch (IllegalArgumentException e) {
+            log.warn("[JWT] 빈 토큰/잘못된 인자", e);
+            System.out.println("[JWT] 빈/잘못된 토큰 값");
         }
+        return false;
     }
 
     public Authentication getAuthentication(String jwt, UserDetails user) {

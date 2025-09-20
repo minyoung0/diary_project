@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -15,17 +18,135 @@
     <a href="/logout" sec:authorize="isAuthenticated()">로그아웃</a>
 
 </div>
-    <div id="demo-mobile-month-view"></div>
+<div id="demo-mobile-month-view"></div>
 <!-- 달력 -->
 
-    <!-- 플래시 메시지 출력 -->
-    <div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
+<!-- 플래시 메시지 출력 -->
+<div th:if="${msg}" class="alert alert-success" th:text="${msg}"></div>
 <div id='calendar'></div>
+<div class="modal fade" id="diaryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="diaryForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">일기 작성 <span id="modalDateLabel"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="diaryId"/>
+                <input type="hidden" id="diaryDate"/>
+                <div class="mb-3">
+                    <label class="form-label">날씨</label>
+                    <input id="weatherInput" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">기온</label>
+                    <input id="tempInput" type="number" step="0.1" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">기분</label>
+                    <select id="moodInput" class="form-select">
+                        <option value="">선택</option>
+                        <option>좋음</option>
+                        <option>보통</option>
+                        <option>나쁨</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">내용</label>
+                    <textarea id="contentInput" rows="6" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteBtn" class="btn btn-danger" style="display:none">삭제</button>
+                gg
+                <button type="submit" class="btn btn-primary">저장</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            </div>
+        </form>
+    </div>
+</div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
+        const modal = new bootstrap.Modal(document.getElementById('diaryModal'));
+
+        async function isAuthenticated() {
+            const res = await fetch("/CheckAuth", {
+                method: 'GET',
+                credentials: 'include', // 쿠키 자동 포함 (JWT가 쿠키에 있으니까 필수)
+                headers: {'Accept': 'application/json'}
+            });
+            console.log("[CheckAuth]:  " + res.status);
+            return res.ok;
+        }
+
+        // form inputs
+        const idInput = document.getElementById('diaryId');
+        const dateInput = document.getElementById('diaryDate');
+        const dateLabel = document.getElementById('modalDateLabel');
+        const weatherInput = document.getElementById('weatherInput');
+        const tempInput = document.getElementById('tempInput');
+        const moodInput = document.getElementById('moodInput');
+        const contentInput = document.getElementById('contentInput');
+        const deleteBtn = document.getElementById('deleteBtn');
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
+            initialView: 'dayGridMonth',
+            dateClick: async (info) => {
+                const authed = await isAuthenticated();
+                if (!authed) {
+                    if (confirm("로그인이 필요한 기능입니다. 로그인페이지로 이동할까요?")) {
+                        location.href = "/loginPage";
+                    }
+                    return;
+                }
+                //글 있는 지 없는지 여부도 체크
+
+                const clickedDate = info.dateStr; // YYYY-MM-DD
+                dateLabel.textContent = clickedDate;
+                dateInput.value = clickedDate;
+                idInput.value = '';
+                deleteBtn.style.display = 'none';
+                contentInput.value = '';
+                moodInput.value = '';
+                tempInput.value = '';
+                weatherInput.value = '';
+
+                //서버에서 날씨 정보가져오기
+                try {
+                    const w = await fetch(`/diary/getWeather?date=${clickedDate}`, {
+                        credentials: 'include',
+
+                    });
+                    if (w.ok) {
+                        const data = await w.json();
+                        console.log("가져온 데이터" + data);
+
+                        // 1) OpenWeatherMap 원본(JSON) 형태 대응
+                        const owWeather = data?.weather?.[0]?.main;          // ex) "Clouds"
+                        const owTempK = data?.main?.temp;                  // ex) 293.28 (K)
+                        const owTempC = typeof owTempK === 'number' ? +(owTempK - 273.15).toFixed(1) : null;
+
+                        // 2) 서버가 DateWeather/DTO로 내려줄 수도 있을 때(백엔드가 바뀌어도 안전하게)
+                        const dtoWeather = data?.weather || data?.main;      // ex) "Clear" or "Clouds"
+                        const dtoTempC = (typeof data?.temperature === 'number') ? data.temperature
+                            : (typeof data?.temp === 'number') ? data.temp
+                                : null;
+
+                        // 3) 최종 값 선택(원본 우선, 없으면 DTO 값)
+                        const weatherVal = owWeather ?? dtoWeather ?? '정보없음';
+                        const tempVal = (owTempC ?? dtoTempC);
+
+                        weatherInput.value = weatherVal;
+                        tempInput.value = (tempVal != null) ? tempVal : '정보없음';
+                    }
+
+                } catch (err) {
+                    console.log(err);
+                    alert("에러가 발생했습니다");
+                }
+                modal.show();
+            }
         });
         calendar.render();
     });

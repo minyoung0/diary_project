@@ -19,20 +19,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 @Transactional(readOnly = true)
-@AllArgsConstructor
 public class DiaryService {
 
     private final DateWeatherRepository dateWeatherRepository;
 
     @Value("${openweathermap.key}")
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private String apiKey;
 
     private static final Logger logger= LoggerFactory.getLogger(CoupleDiaryApplication.class);
+
+    public DiaryService(DateWeatherRepository dateWeatherRepository) {
+        this.dateWeatherRepository = dateWeatherRepository;
+    }
+
+    public DateWeather getDateWeather(LocalDate date){
+        List<DateWeather> dateWeaterList=dateWeatherRepository.findAllByDate(date);
+        if(dateWeaterList.size()==0){
+            return getWeatherFromApi();
+        }else{
+            return dateWeaterList.get(0);
+        }
+    }
 
 
     @Transactional
