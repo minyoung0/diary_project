@@ -73,7 +73,7 @@
         // 서버가 302 + Set-Cookie로 응답하면 location으로 이동
         //if (res.status === 303 ||res.status === 302 ) location.href = '/index';
         const res = await fetch('/signin', { method:'POST', headers:{'Content-Type':'application/json'}, body });
-        if (res.ok) location.href = '/';
+        if (res.ok) window.location.href = '/';
     });
 </script>
 </body>

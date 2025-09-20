@@ -1,6 +1,6 @@
 package com.example.coupleDiary.repository;
 
-import com.example.coupleDiary.model.MemberEntity;
+import com.example.coupleDiary.domain.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

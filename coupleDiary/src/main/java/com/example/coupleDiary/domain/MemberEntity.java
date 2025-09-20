@@ -1,4 +1,4 @@
-package com.example.coupleDiary.model;
+package com.example.coupleDiary.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
