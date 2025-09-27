@@ -1,6 +1,7 @@
-[2025-09-27 11:34:04:42084][http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+[2025-09-24 22:43:30:1011118][http-nio-8080-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Out of range value for column 'temperature' at row 1
+[2025-09-24 22:43:30:1011143][http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
 java.lang.RuntimeException: null
-	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:52)
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -107,9 +108,10 @@ java.lang.RuntimeException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-[2025-09-27 12:07:50:29173][http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+[2025-09-24 22:45:35:1136085][http-nio-8080-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'diary_id' doesn't have a default value
+[2025-09-24 22:45:35:1136089][http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
 java.lang.RuntimeException: null
-	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:52)
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -216,9 +218,10 @@ java.lang.RuntimeException: null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-[2025-09-27 12:08:36:6338][http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+[2025-09-24 22:46:20:33498][http-nio-8080-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'diary_id' doesn't have a default value
+[2025-09-24 22:46:20:33517][http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
 java.lang.RuntimeException: null
-	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:52)
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

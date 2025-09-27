@@ -2,7 +2,9 @@ package com.example.coupleDiary.service;
 
 import com.example.coupleDiary.CoupleDiaryApplication;
 import com.example.coupleDiary.domain.DateWeather;
+import com.example.coupleDiary.domain.Diary;
 import com.example.coupleDiary.repository.DateWeatherRepository;
+import com.example.coupleDiary.repository.DiaryRepository;
 import lombok.AllArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +20,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,19 +30,26 @@ import java.util.Map;
 public class DiaryService {
 
     private final DateWeatherRepository dateWeatherRepository;
+    private final DiaryRepository diaryRepository ;
 
     @Value("${openweathermap.key}")
     private String apiKey;
 
     private static final Logger logger= LoggerFactory.getLogger(CoupleDiaryApplication.class);
 
-    public DiaryService(DateWeatherRepository dateWeatherRepository) {
+    public DiaryService(DateWeatherRepository dateWeatherRepository,
+                        DiaryRepository diaryRepository) {
         this.dateWeatherRepository = dateWeatherRepository;
+        this.diaryRepository = diaryRepository;
     }
 
+    //해당 날짜 날씨 데이터 체크
     public DateWeather getDateWeather(LocalDate date){
         List<DateWeather> dateWeaterList=dateWeatherRepository.findAllByDate(date);
+        System.out.println("해당 날짜 데이터 사이즈: "+dateWeaterList.size());
         if(dateWeaterList.size()==0){
+            DateWeather newWeather = getWeatherFromApi();
+            dateWeatherRepository.save(newWeather);
             return getWeatherFromApi();
         }else{
             return dateWeaterList.get(0);
@@ -47,14 +57,16 @@ public class DiaryService {
     }
 
 
+    //날씨 데이터 저장
     @Transactional
     @Scheduled(cron = "0 0 1 * * *") // 매일 새벽 1시 0분 0초 마다
     public void saveWeatherDate(){
         logger.info("데이터 잘 가져옴");
         dateWeatherRepository.save(getWeatherFromApi());
     }
+
+    //open weather map에서 날씨 데이터 가져오기
     private DateWeather getWeatherFromApi(){
-        //open weather map에서 날씨 데이터 가져오기
         String weatherData = getWeatherString();
         System.out.println(getWeatherString());
 
@@ -65,15 +77,17 @@ public class DiaryService {
         dateWeather.setDate(LocalDate.now());
         dateWeather.setWeather(parsedWeather.get("main").toString());
         Object t = parsedWeather.get("temp");
+
         double temp = (t instanceof Number) ? ((Number) t).doubleValue()
                 : Double.parseDouble(String.valueOf(t));
-        dateWeather.setTemperature(temp);
+        int rounded = (int) Math.round(temp);
+        dateWeather.setTemperature(rounded);
         return dateWeather;
     }
 
     private String getWeatherString() {
         try {
-            String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=" + apiKey;
+            String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=" + apiKey+"&units=metric";
             URL url = new URL(apiUrl);
 
             //apiURL을 HTTP형식으로 호출하겠다
@@ -129,6 +143,19 @@ public class DiaryService {
 
         return resultMap;
 
+    }
+
+    @Transactional
+    public Diary saveDiary(Diary diary) {
+        return diaryRepository.save(diary);
+    }
+
+//    public List<Diary> getDiaryByDate(LocalDate date) {
+//        return diaryRepository.findAllByDate(date);
+//    }
+
+    public void deleteDiary(Integer id) {
+        diaryRepository.deleteById(id);
     }
 
 
