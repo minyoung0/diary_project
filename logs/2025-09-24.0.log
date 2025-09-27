@@ -1,0 +1,1037 @@
+[2025-09-24 21:25:39:634][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 35740 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:25:39:638][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:25:40:1387][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:25:40:1447][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:25:40:1972][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:25:41:1986][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:25:41:1987][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:25:41:1987][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:25:41:2060][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:25:41:2060][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1380 ms
+[2025-09-24 21:25:41:2192][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:25:41:2281][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:25:41:2324][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:25:41:2676][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:25:41:2709][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:25:41:2930][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5bccaedb
+[2025-09-24 21:25:41:2932][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:25:42:2979][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:25:42:2980][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:25:42:2998][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:25:42:3820][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:25:42:3883][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:25:43:4319][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:25:43:4352][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:25:43:4513][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:25:43:4868][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:25:43:4886][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:25:43:4895][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.788 seconds (process running for 5.334)
+[2025-09-24 21:29:07:208271][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:29:07:208271][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:29:07:208272][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:32:03:384858][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:32:04:385072][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:32:04:385076][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:32:04:385078][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:32:04:385084][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:32:07:657][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 17608 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:32:07:659][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:32:07:1325][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:32:07:1381][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:32:08:1814][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:32:08:1823][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:32:08:1824][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:32:08:1824][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:32:08:1886][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:32:08:1887][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1177 ms
+[2025-09-24 21:32:08:1992][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:32:08:2048][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:32:08:2086][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:32:08:2367][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:32:08:2399][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:32:09:2608][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@299786b1
+[2025-09-24 21:32:09:2610][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:32:09:2658][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:32:09:2660][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:32:09:2678][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:32:10:3512][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:32:10:3570][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:32:10:3946][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:32:10:3979][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:32:10:4140][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:32:11:4518][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:32:11:4539][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:32:11:4549][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.449 seconds (process running for 4.974)
+[2025-09-24 21:32:11:4680][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:32:11:4681][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:32:11:4682][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:33:17:71190][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:33:17:71352][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:33:17:71356][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:33:17:71358][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:33:17:71363][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:33:20:558][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 29228 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:33:20:560][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:33:21:1214][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:33:21:1279][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:33:21:1790][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:33:21:1801][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:33:21:1803][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:33:21:1803][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:33:21:1886][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:33:21:1887][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1289 ms
+[2025-09-24 21:33:22:2009][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:33:22:2066][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:33:22:2100][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:33:22:2366][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:33:22:2394][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:33:22:2582][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42066f0d
+[2025-09-24 21:33:22:2584][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:33:22:2615][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:33:22:2616][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:33:22:2630][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:33:23:3400][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:33:23:3476][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:33:23:3913][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:33:23:3953][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:33:24:4135][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:33:24:4446][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:33:24:4469][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:33:24:4479][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.379 seconds (process running for 4.94)
+[2025-09-24 21:33:28:8873][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:33:28:8874][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:33:28:8874][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+[2025-09-24 21:34:05:45496][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:34:05:45679][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:34:05:45684][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:34:05:45686][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:34:05:45692][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:34:08:550][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 36712 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:34:08:552][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:34:09:1187][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:34:09:1240][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:34:09:1706][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:34:09:1716][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:34:09:1718][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:34:09:1718][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:34:09:1785][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:34:09:1785][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1187 ms
+[2025-09-24 21:34:09:1907][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:34:09:1962][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:34:09:1992][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:34:10:2241][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:34:10:2269][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:34:10:2456][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e23ee0e
+[2025-09-24 21:34:10:2458][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:34:10:2496][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:34:10:2497][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:34:10:2511][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:34:11:3241][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:34:11:3293][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:34:11:3654][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:34:11:3687][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:34:11:3837][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:34:12:4143][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:34:12:4161][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:34:12:4170][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.068 seconds (process running for 4.646)
+[2025-09-24 21:34:22:14526][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:34:22:14526][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:34:22:14527][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:34:52:44308][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:34:52:44464][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:34:52:44467][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:34:52:44469][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:34:52:44475][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:34:55:624][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 22012 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:34:55:626][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:34:55:1342][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:34:55:1403][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:34:56:1837][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:34:56:1846][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:34:56:1847][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:34:56:1847][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:34:56:1908][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:34:56:1908][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1236 ms
+[2025-09-24 21:34:56:2014][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:34:56:2061][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:34:56:2094][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:34:56:2341][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:34:56:2366][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:34:57:2574][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fee7ca
+[2025-09-24 21:34:57:2576][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:34:57:2613][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:34:57:2614][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:34:57:2630][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:34:57:3475][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:34:57:3536][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:34:58:3905][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:34:58:3935][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:34:58:4107][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:34:58:4445][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:34:58:4465][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:34:58:4476][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.376 seconds (process running for 4.879)
+[2025-09-24 21:34:59:4586][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:34:59:4587][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:34:59:4587][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+[2025-09-24 21:35:58:64452][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:35:59:64657][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:35:59:64661][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:35:59:64662][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:35:59:64668][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:36:01:616][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 25888 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:36:01:618][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:36:02:1294][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:36:02:1347][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:36:02:1792][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:36:02:1801][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:36:02:1803][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:36:02:1803][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:36:02:1860][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:36:02:1860][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1201 ms
+[2025-09-24 21:36:02:1972][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:36:03:2023][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:36:03:2058][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:36:03:2327][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:36:03:2356][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:36:03:2554][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75f8d9b0
+[2025-09-24 21:36:03:2555][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:36:03:2590][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:36:03:2591][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:36:03:2607][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:36:04:3364][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:36:04:3417][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:36:04:3749][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:36:04:3773][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:36:04:3901][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:36:05:4221][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:36:05:4239][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:36:05:4248][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.146 seconds (process running for 4.628)
+[2025-09-24 21:36:07:6416][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:36:07:6416][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:36:07:6417][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:36:50:49492][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:36:50:49608][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:36:50:49611][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:36:50:49613][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:36:50:49618][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:36:53:685][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 27932 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:36:53:686][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:36:53:1341][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:36:53:1400][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:36:54:1842][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:36:54:1851][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:36:54:1853][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:36:54:1853][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:36:54:1912][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:36:54:1912][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1184 ms
+[2025-09-24 21:36:54:2009][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:36:54:2050][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:36:54:2082][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:36:54:2323][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:36:54:2348][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:36:55:2550][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@14ad42
+[2025-09-24 21:36:55:2552][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:36:55:2586][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:36:55:2587][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:36:55:2604][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:36:55:3387][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:36:55:3446][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:36:56:3874][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:36:56:3904][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:36:56:4073][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:36:56:4424][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:36:56:4444][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:36:56:4453][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.34 seconds (process running for 4.869)
+[2025-09-24 21:37:00:7836][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:37:00:7836][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:37:00:7837][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:38:52:120147][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:38:52:120276][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:38:52:120279][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:38:52:120281][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:38:52:120287][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:38:57:625][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 7664 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:38:57:627][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:38:57:1290][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:38:57:1360][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:38:58:1818][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:38:58:1826][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:38:58:1828][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:38:58:1828][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:38:58:1887][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:38:58:1888][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1212 ms
+[2025-09-24 21:38:58:1988][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:38:58:2034][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:38:58:2064][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:38:58:2319][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:38:58:2345][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:38:59:2551][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42066f0d
+[2025-09-24 21:38:59:2552][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:38:59:2586][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:38:59:2587][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:38:59:2602][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:38:59:3380][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:38:59:3436][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:39:00:3805][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:39:00:3831][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:39:00:3987][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:39:00:4319][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:39:00:4337][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:39:00:4346][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.249 seconds (process running for 4.736)
+[2025-09-24 21:39:13:16676][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:39:13:16676][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:39:13:16677][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 21:40:30:94359][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:40:31:94501][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:40:31:94504][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:40:31:94506][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:40:31:94513][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:40:35:538][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 8508 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:40:35:539][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:40:35:1159][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:40:35:1218][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:40:36:1665][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:40:36:1674][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:40:36:1675][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:40:36:1675][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:40:36:1739][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:40:36:1739][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1163 ms
+[2025-09-24 21:40:36:1833][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:40:36:1888][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:40:36:1921][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:40:36:2157][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:40:36:2182][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:40:36:2356][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17ec5e2a
+[2025-09-24 21:40:36:2357][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:40:36:2394][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:40:36:2395][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:40:36:2410][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:40:37:3185][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:43:03:580][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 19516 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:43:03:582][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:43:04:1180][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:43:04:1234][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:43:04:1664][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:43:04:1674][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:43:04:1675][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:43:04:1675][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:43:04:1747][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:43:04:1748][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1126 ms
+[2025-09-24 21:43:05:1869][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:43:05:1926][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:43:05:1957][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:43:05:2237][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:43:05:2268][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:43:05:2481][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@608b906d
+[2025-09-24 21:43:05:2483][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:43:05:2522][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:43:05:2523][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:43:05:2539][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:43:06:3302][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:44:40:561][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 32448 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:44:40:562][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:44:40:1129][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:44:40:1177][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:44:41:1635][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:44:41:1645][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:44:41:1647][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:44:41:1647][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:44:41:1719][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:44:41:1720][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1122 ms
+[2025-09-24 21:44:41:1834][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:44:41:1886][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:44:41:1919][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:44:41:2185][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:44:41:2227][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:44:41:2438][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17ec5e2a
+[2025-09-24 21:44:41:2439][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:44:41:2477][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:44:41:2478][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:44:41:2500][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:44:42:3226][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:47:38:605][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 888 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:47:38:607][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:47:38:1292][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:47:38:1358][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:47:39:1888][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:47:39:1898][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:47:39:1899][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:47:39:1899][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:47:39:1968][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:47:39:1968][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1315 ms
+[2025-09-24 21:47:39:2080][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:47:39:2130][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:47:39:2162][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:47:39:2458][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:47:39:2488][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:47:40:2705][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@73ae82da
+[2025-09-24 21:47:40:2706][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:47:40:2745][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:47:40:2746][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:47:40:2759][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:47:40:3451][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:50:22:630][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 34692 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:50:22:631][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:50:23:1236][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:50:23:1297][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 54 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:50:23:1769][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:50:23:1781][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:50:23:1782][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:50:23:1782][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:50:23:1852][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:50:23:1852][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1184 ms
+[2025-09-24 21:50:23:1972][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:50:23:2030][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:50:23:2065][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:50:24:2373][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:50:24:2408][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:50:24:2623][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@14993306
+[2025-09-24 21:50:24:2625][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:50:24:2662][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:50:24:2665][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:50:24:2683][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:50:25:3562][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:50:25:3567][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:50:25:3974][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:50:25:4003][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:50:25:4172][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:50:26:4534][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:50:26:4552][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:50:26:4561][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.442 seconds (process running for 5.036)
+[2025-09-24 21:50:31:10146][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:50:32:10294][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:50:32:10298][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:50:32:10299][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:50:32:10306][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:50:39:648][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 27048 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:50:39:650][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:50:40:1396][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:50:40:1463][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:50:40:1929][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:50:40:1937][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:50:40:1938][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:50:40:1938][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:50:40:2002][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:50:40:2002][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1306 ms
+[2025-09-24 21:50:41:2113][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:50:41:2171][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:50:41:2206][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:50:41:2505][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:50:41:2541][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:50:41:2777][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@612ac38b
+[2025-09-24 21:50:41:2778][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:50:41:2815][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:50:41:2816][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:50:41:2832][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:50:42:3608][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:50:42:3612][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:50:42:3988][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:50:42:4016][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:50:43:4175][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:50:43:4537][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:50:43:4559][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:50:43:4569][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 4.467 seconds (process running for 5.024)
+[2025-09-24 21:53:04:145250][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 21:53:04:145377][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 21:53:04:145380][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:53:04:145381][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 21:53:04:145387][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 21:55:22:1326][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 37064 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 21:55:22:1329][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 21:55:23:2880][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 21:55:23:2985][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 3 JPA repository interfaces.
+[2025-09-24 21:55:24:4087][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 21:55:24:4106][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:55:24:4108][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 21:55:24:4108][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 21:55:25:4220][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 21:55:25:4220][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2802 ms
+[2025-09-24 21:55:25:4463][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 21:55:25:4599][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 21:55:25:4691][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 21:55:26:5296][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 21:55:26:5353][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 21:55:26:5963][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9f2fe2e
+[2025-09-24 21:55:26:5967][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 21:55:26:6056][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 21:55:26:6057][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 21:55:26:6083][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 21:55:28:7357][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 21:55:28:7361][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 21:55:29:8260][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 21:55:29:8331][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 21:55:29:8706][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 21:55:30:9491][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 21:55:30:9532][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 21:55:30:9544][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 9.358 seconds (process running for 10.368)
+[2025-09-24 21:55:39:19092][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 21:55:39:19092][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 21:55:39:19093][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 22:26:12:1851215][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 22:26:39:839][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 39100 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 22:26:39:841][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 22:26:41:2016][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 22:26:41:2097][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 3 JPA repository interfaces.
+[2025-09-24 22:26:42:2954][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 22:26:42:2970][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:26:42:2972][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 22:26:42:2972][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 22:26:42:3073][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 22:26:42:3073][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2171 ms
+[2025-09-24 22:26:42:3280][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 22:26:42:3389][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 22:26:42:3459][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 22:26:43:3922][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 22:26:43:3973][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 22:26:43:4483][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76b642aa
+[2025-09-24 22:26:43:4485][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 22:26:43:4626][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 22:26:43:4627][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 22:26:43:4654][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 22:26:45:6158][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 22:26:45:6162][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 22:26:45:6766][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 22:26:46:6847][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 22:26:46:7090][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 22:26:46:7643][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:26:46:7709][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 22:26:46:7725][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 7.577 seconds (process running for 8.41)
+[2025-09-24 22:27:03:24330][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 22:27:03:24330][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 22:27:03:24331][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 22:43:30:1011116][http-nio-8080-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1264, SQLState: 22001
+[2025-09-24 22:43:30:1011118][http-nio-8080-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Out of range value for column 'temperature' at row 1
+[2025-09-24 22:43:30:1011143][http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+java.lang.RuntimeException: null
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.example.coupleDiary.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:46)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:117)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+[2025-09-24 22:45:35:1136085][http-nio-8080-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+[2025-09-24 22:45:35:1136085][http-nio-8080-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'diary_id' doesn't have a default value
+[2025-09-24 22:45:35:1136089][http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+java.lang.RuntimeException: null
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.example.coupleDiary.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:46)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:117)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+[2025-09-24 22:45:41:1142587][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 22:45:41:1142838][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 22:45:42:1142849][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 22:45:42:1142862][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 22:45:42:1142874][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 22:45:47:800][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 20980 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 22:45:47:803][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 22:45:48:1675][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 22:45:48:1753][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 3 JPA repository interfaces.
+[2025-09-24 22:45:49:2403][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 22:45:49:2419][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:45:49:2421][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 22:45:49:2421][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 22:45:49:2526][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 22:45:49:2526][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1678 ms
+[2025-09-24 22:45:49:2719][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 22:45:49:2828][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 22:45:49:2890][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 22:45:50:3353][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 22:45:50:3398][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 22:45:50:3815][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45790cb
+[2025-09-24 22:45:50:3818][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 22:45:50:3892][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 22:45:50:3893][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 22:45:50:3915][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 22:45:51:5092][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 22:45:51:5096][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 22:45:52:5619][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 22:45:52:5661][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 22:45:52:5840][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 22:45:53:6232][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:45:53:6263][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 22:45:53:6276][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 6.135 seconds (process running for 6.843)
+[2025-09-24 22:46:14:27245][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 22:46:14:27245][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 22:46:14:27246][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[2025-09-24 22:46:20:33498][http-nio-8080-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+[2025-09-24 22:46:20:33498][http-nio-8080-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'diary_id' doesn't have a default value
+[2025-09-24 22:46:20:33517][http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+java.lang.RuntimeException: null
+	at com.example.coupleDiary.controller.DiaryController.saveDiary(DiaryController.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.example.coupleDiary.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:46)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:117)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+[2025-09-24 22:50:34:287334][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 22:50:34:287601][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 22:50:34:287608][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 22:50:34:287610][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 22:50:34:287620][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2025-09-24 22:50:38:774][main] INFO  c.e.c.CoupleDiaryApplication - Starting CoupleDiaryApplication using Java 17.0.12 with PID 37080 (D:\Programing\coupleDiary\coupleDiary\build\classes\java\main started by minyoung in D:\Programing\coupleDiary)
+[2025-09-24 22:50:38:776][main] INFO  c.e.c.CoupleDiaryApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-24 22:50:39:1802][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-24 22:50:39:1915][main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 100 ms. Found 3 JPA repository interfaces.
+[2025-09-24 22:50:40:2827][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+[2025-09-24 22:50:40:2845][main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:50:40:2848][main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-24 22:50:40:2848][main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-24 22:50:40:2970][main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-24 22:50:40:2971][main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2142 ms
+[2025-09-24 22:50:40:3214][main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-24 22:50:40:3349][main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.26.Final
+[2025-09-24 22:50:40:3421][main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-24 22:50:41:3888][main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-24 22:50:41:3930][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2025-09-24 22:50:41:4327][main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1fca53a7
+[2025-09-24 22:50:41:4330][main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2025-09-24 22:50:41:4389][main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-24 22:50:41:4390][main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+[2025-09-24 22:50:41:4417][main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-24 22:50:43:5735][main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-24 22:50:43:5739][main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 22:50:43:6533][main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-24 22:50:43:6579][main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[2025-09-24 22:50:44:6863][main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name memberService
+[2025-09-24 22:50:44:7418][main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-24 22:50:44:7452][main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-24 22:50:44:7464][main] INFO  c.e.c.CoupleDiaryApplication - Started CoupleDiaryApplication in 7.339 seconds (process running for 8.045)
+[2025-09-24 22:50:49:12462][http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-24 22:50:49:12462][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2025-09-24 22:50:49:12464][http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+[2025-09-24 23:14:28:1431087][SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-24 23:14:28:1431225][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-24 23:14:28:1431235][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-24 23:14:28:1431244][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2025-09-24 23:14:28:1431251][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
