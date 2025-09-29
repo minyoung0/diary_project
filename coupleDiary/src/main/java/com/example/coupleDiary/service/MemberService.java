@@ -17,11 +17,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class MemberService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        this.memberRepository.findByUserId(userId)
-                .orElseThrow(()-> new UsernameNotFoundException("couldn't find user ->"+userId));
-        return null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return memberRepository.findByUserId(username)
+                .orElseThrow(() -> new UsernameNotFoundException("사용자 없음: " + username));
     }
 
     public MemberEntity register(Auth.SignUp member){
