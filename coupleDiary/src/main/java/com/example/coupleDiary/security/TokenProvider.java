@@ -18,6 +18,7 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -90,12 +91,24 @@ public class TokenProvider {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretBase64)); // HS512: 64바이트 이상
     }
 
+    //jwt발급
     public String generateToken(String userId) {
         Instant now = Instant.now();
         return Jwts.builder()
                 .setSubject(userId)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plusSeconds(ttlSeconds)))
+                .signWith(key(), SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    // Refresh Token 생성
+    public String generateRefreshToken(String userId) {
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .setSubject(userId)
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plusSeconds(60L * 60 * 24))) // 1일
                 .signWith(key(), SignatureAlgorithm.HS512)
                 .compact();
     }

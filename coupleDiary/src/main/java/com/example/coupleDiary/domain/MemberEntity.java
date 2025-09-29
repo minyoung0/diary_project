@@ -12,10 +12,8 @@ import java.util.Collection;
 import java.util.List;
 
 @Builder
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name="tb_user")
 public class MemberEntity implements UserDetails {
@@ -40,6 +38,9 @@ public class MemberEntity implements UserDetails {
 
     @Column(name="profile_img")
     private String profileImg;
+
+    @Column(name="couple_id")
+    private String coupleId;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

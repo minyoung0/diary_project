@@ -1,12 +1,13 @@
 package com.example.coupleDiary.controller;
 
 import com.example.coupleDiary.domain.Auth;
+import com.example.coupleDiary.domain.MemberEntity;
 import com.example.coupleDiary.security.TokenProvider;
 import com.example.coupleDiary.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +28,7 @@ public class UserController {
     private final MemberService memberService;
 
     private final TokenProvider tokenProvider;
+    private final RedisTemplate redisTemplate;
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute Auth.SignUp request, RedirectAttributes ra) {
@@ -42,15 +47,24 @@ public class UserController {
 
     @PostMapping("/signin")
     public ResponseEntity<Object> signin(@RequestBody Auth.SignIn request){
-        /*var member = memberService.authenticate(request);
-        String token = tokenProvider.generateToken(member.getUserId());
-        ResponseCookie cookie = ResponseCookie.from("access_token", token)
-                .httpOnly(true).secure(false).sameSite("Lax").path("/").maxAge(Duration.ofHours(2)).build();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();*/
         var member = memberService.authenticate(request);
-        String token = tokenProvider.generateToken(member.getUserId());
+        String userId= member.getUserId();
 
-        ResponseCookie cookie = ResponseCookie.from("access_token", token)
+        //Access Token
+        String token = tokenProvider.generateToken(userId);
+
+        //Refresh Token
+        String refreshToken= tokenProvider.generateRefreshToken(userId);
+
+        //Refresh Token Redis 저장(1일 유효)
+        redisTemplate.opsForValue().set(
+                "refresh:"+userId,
+                refreshToken,
+                1, TimeUnit.DAYS
+        );
+
+        //assessToken 쿠키저장
+        ResponseCookie accessCookie = ResponseCookie.from("access_token", token)
                 .httpOnly(true)       // JavaScript에서 접근 못하게 (보안)
                 .secure(false)        // ★ localhost(HTTP) 환경에서는 false, 배포(HTTPS)에서는 true
                 .sameSite("Lax")      // CSRF 방지 기본 설정
@@ -58,8 +72,18 @@ public class UserController {
                 .maxAge(Duration.ofHours(2))
                 .build();
 
+        ResponseCookie refreshCookie = ResponseCookie.from("refresh_token",refreshToken)
+                .httpOnly(true)
+                .secure(false)
+                .sameSite("Strict")
+                .path("/")
+                .maxAge(Duration.ofDays(7))
+                .build();
+
+
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
+                .header(HttpHeaders.SET_COOKIE, refreshCookie.toString())
                 .build();
     }
 
@@ -70,27 +94,24 @@ public class UserController {
         return ResponseEntity.noContent().header(HttpHeaders.SET_COOKIE,del.toString()).build();
     }
 
-   /* @GetMapping("/CheckAuth")
-    public ResponseEntity<?> me(@AuthenticationPrincipal UserDetails user){
-        if(user==null){
-            System.out.println("user is NULL");
-        }
-        return (user==null)?ResponseEntity.status(401).build()
-                :ResponseEntity.ok().build();
-    }*/
    @GetMapping("/CheckAuth")
-   public ResponseEntity<?> me(Authentication auth) {
-       Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-       System.out.println("[CheckAuth] auth=" + auth2);
+   public ResponseEntity<?> me() {
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       System.out.println("[CheckAuth] auth=" + auth);
 
        // anonymous 방어
-       if (auth2 == null || !auth2.isAuthenticated()
-               || "anonymousUser".equals(String.valueOf(auth2.getPrincipal()))) {
+       if (auth == null || !auth.isAuthenticated()
+               || "anonymousUser".equals(String.valueOf(auth.getPrincipal()))) {
            return ResponseEntity.status(401).build();
        }
 
-       System.out.println("[CheckAuth] principal=" + auth2.getPrincipal());
-       return ResponseEntity.ok().build();
+       MemberEntity user = (MemberEntity) auth.getPrincipal();
+
+       Map<String, Object> result = new HashMap<>();
+       result.put("userId", user.getUserId());
+       result.put("coupleId", user.getCoupleId());
+
+       return ResponseEntity.ok(result);
    }
 
 }
