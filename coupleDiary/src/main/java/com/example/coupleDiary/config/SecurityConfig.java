@@ -28,7 +28,7 @@ public class SecurityConfig {
                                 "/", "/loginPage", "/joinPage",
                                 "/signup", "/signin", "/error",
                                 "/css/**", "/js/**", "/images/**",
-                                "/logout"
+                                "/logout","/diary/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

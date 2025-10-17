@@ -2,18 +2,21 @@ package com.example.coupleDiary.controller;
 
 import com.example.coupleDiary.domain.DateWeather;
 import com.example.coupleDiary.domain.Diary;
+import com.example.coupleDiary.domain.MemberEntity;
 import com.example.coupleDiary.repository.DateWeatherRepository;
 import com.example.coupleDiary.repository.DiaryRepository;
+import com.example.coupleDiary.repository.MemberRepository;
 import com.example.coupleDiary.service.DiaryService;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/diary")
@@ -22,20 +25,29 @@ public class DiaryController {
     private final DiaryService diaryService;
     private final DateWeatherRepository dateWeatherRepository;
     private final DiaryRepository diaryRepository;
+    private final MemberRepository memberRepository;
 
 
-    public DiaryController(DiaryService diaryService, DateWeatherRepository dateWeatherRepository, DiaryRepository diaryRepository) {
+    public DiaryController(DiaryService diaryService, DateWeatherRepository dateWeatherRepository, DiaryRepository diaryRepository, MemberRepository memberRepository) {
         this.diaryService = diaryService;
         this.dateWeatherRepository = dateWeatherRepository;
         this.diaryRepository = diaryRepository;
+        this.memberRepository = memberRepository;
     }
 
 
     @GetMapping("/getWeather")
     public ResponseEntity<?> getWeather(@RequestParam("date")LocalDate date){
-        System.out.println(date);
-        DateWeather dw= diaryService.getDateWeather(date);
-        return ResponseEntity.ok(dw);
+        try {
+            System.out.println("[getWeather]"+date);
+            DateWeather dw= diaryService.getDateWeather(date);
+            return ResponseEntity.ok(dw);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("날씨불러오기 실패");
+        }
+
     }
 
     @PostMapping("/save")
@@ -55,21 +67,50 @@ public class DiaryController {
     }
 
     @GetMapping("/events")
-    public List<Map<String,Object>> getDiary(){
-        List<Diary> diaryList = diaryRepository.findAll();
-        List<Map<String,Object>> allDiaries = new ArrayList<>();
+    public ResponseEntity<?> getAllDiary(){
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            MemberEntity user = (MemberEntity) auth.getPrincipal();
 
-        for(Diary d : diaryList){
-            Map<String,Object> diary = new HashMap<>();
-            diary.put("title", "📙일기 : " + d.getUserId());
-            diary.put("content",d.getContent());
-            diary.put("writer",d.getUserId());
-            diary.put("id",d.getDiaryId());
-            diary.put("mood",d.getMood());
-            diary.put("weather",d.getWeather());
-            diary.put("date",d.getCreatedAt());
-            allDiaries.add(diary);
+            int coupleId =  user.getCoupleId();
+            List<String> userIds;
+            if(coupleId >=0 ){
+                userIds = memberRepository.findUserIdsByCoupleId(coupleId);
+            }else{
+                userIds = List.of(user.getUserId());
+            }
+            List<Diary> allDiaries = diaryRepository.findByUserIdIn(userIds);
+            List<Map<String, Object>> diaryList = new ArrayList<>();
+            for(Diary d : allDiaries){
+                Map<String,Object> diary = new HashMap<>();
+                diary.put("title", d.getUserId());
+                diary.put("content","📙일기 : " + d.getContent());
+                diary.put("writer",d.getUserId());
+                diary.put("id",d.getDiaryId());
+                diary.put("mood",d.getMood());
+                diary.put("weather",d.getWeather());
+                diary.put("date",d.getCreatedAt());
+                diary.put("start", d.getCreatedAt().toString());
+                diary.put("backgroundColor",
+                        d.getUserId().equals(user.getUserId()) ? "#ffb896" : "#b8d9ff");
+
+                diaryList.add(diary);
+            }
+            return ResponseEntity.ok(diaryList);
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(Collections.emptyList());
         }
-        return allDiaries;
+
+    }
+    @GetMapping("/getDiary/{diaryId}")
+    public ResponseEntity<?> getDiaryById(@PathVariable("diaryId") int diaryId){
+        try {
+            Diary diary = diaryRepository.findByDiaryId(diaryId);
+            return ResponseEntity.ok(diary);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("일기불러오기 실패");
+        }
     }
 }

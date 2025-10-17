@@ -62,7 +62,7 @@
     <h1 id="title">회원가입</h1>
     <span class="red-text">*</span>은 필수항목입니다.
     <!-- Thymeleaf 사용 시 action을 th:action으로 바꿔도 됩니다. -->
-    <form method="post" action="/signup" autocomplete="on" novalidate>
+    <form method="post" action="/signup" autocomplete="on" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="row">
             <div>
@@ -100,8 +100,9 @@
 
         <div>
             <label for="profile_img">프로필 이미지(URL 선택)</label>
-            <input id="profile_img" name="profile_img" type="url" placeholder="https://example.com/image.jpg" />
-            <div class="hint">파일 업로드로 바꾸려면 form에 enctype="multipart/form-data" 설정</div>
+            <input id="profile_img" name="profileImg" type="file" accept="image/*" />
+            <div class="hint">JPG, PNG 등 이미지 파일을 선택하세요</div>
+
         </div>
 
         <button type="submit">가입하기</button>

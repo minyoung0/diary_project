@@ -12,137 +12,241 @@
     <title>🧑🏻‍❤️‍🧑🏻coupleDiary🧑🏻‍❤️‍🧑🏻</title>
     <style>
         body {
-            width:80%;
-            height:40%;
-            margin :100px auto;
-            background: #f5f5f5;
-        }
-
-        /* 전체 레이아웃 */
-        .main-layout {
+            background: #f8f8f8;
             display: flex;
-            width: 100%;
-            height: 100vh;
-            background: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 15px rgba(246, 173, 208, 0.8), /* 핑크빛 네온 */
-            0 0 30px rgba(255, 182, 193, 0.6),
-            0 0 45px rgba(255, 192, 203, 0.4);
-            border-radius: 8px; /* 모서리 둥글게 (선택) */
-            overflow: hidden;   /* 내부 요소가 삐져나가지 않도록 */
-            margin: 20px;       /* 화면 테두리와 약간 띄움 */
-            border-radius: 80px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
-        /* 달력 영역 */
-        #calendar {
-            flex: 1; /* 남은 공간 다 차지 */
-            /*border: 1px solid #000;*/
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            width: 80%;
             min-height: 600px;
-            background: white;
-            margin: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(255, 184, 150, 0.3);
+            overflow: hidden;
         }
 
-        /* 오른쪽 프로필 영역 */
-        .profile-box {
-            width: 200px; /* 오른쪽 영역 고정 */
+        /* Calendar */
+        .calendar-container {
+            padding: 24px;
+            border-right: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #calendar {
+            flex: 1;
+            min-height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .fc-event {
+            background-color: #ffb896 !important;
+            border: none !important;
+            color: white !important;
+            font-size: 12px;
+            border-radius: 6px;
+        }
+
+        /* Profile */
+        .profile-container {
+            background: linear-gradient(180deg, #fef6f1 0%, #fff6f9 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #fff;
-            border-left: 3px solid #ddd;
-            padding: 20px;
-            gap: 30px;
+            gap: 24px;
+            padding: 24px;
         }
 
-        .profile {
-            text-align: center;
+        .profile-pair {
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
-        .profile img {
-            width: 80px;
-            height: 80px;
+        .person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .person img {
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
+            border: 4px solid #ffb896;
             object-fit: cover;
-            background: #0d5c75; /* 대체 색상 */
         }
 
         .heart {
-            font-size: 40px;
-            color: crimson;
+            font-size: 36px;
+            color: #ff7b9c;
+            text-shadow: 0 0 8px rgba(255, 123, 156, 0.4);
         }
 
-        .fc-event {
-            background-color: #f68bb5 !important;
-            border: none !important;
-            color: white !important;
-            font-size: 12px;
-            padding: 2px;
+        .days-counter {
+            text-align: center;
+        }
+
+        .days-counter p {
+            margin: 0;
+        }
+
+        /* Modal 스타일 */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .mood-button {
+            background: #fff6f1;
+            border: 1px solid #ffb896;
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .mood-button:hover {
+            background: #ffe4d6;
+        }
+
+        .mood-emoji {
+            font-size: 22px;
+            display: block;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .btn-cancel {
+            background: #ccc;
+            color: #fff;
+            border: none;
             border-radius: 6px;
+            padding: 6px 12px;
+        }
+
+        .btn-save {
+            background: #ffb896;
+            color: #5a3a2a;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+        }
+
+        .btn-save:hover {
+            background: #ffd3b5;
+        }
+
+        .mood-button.active {
+            background: #ffb896;
+            color: #fff;
+            border: 1px solid #ff7b9c;
         }
     </style>
-
 </head>
+
 <body>
-<div id="body-frame"> <!-- 로그인 안 한 사용자 -->
-    <a href="/loginPage"  id="loginBtn" style="display:none">로그인</a> <!-- 로그인 한 사용자 -->
-    <a href="/logout" id="logoutBtn" style="display:none">로그아웃</a>
+<div id="authButtons" class="text-end position-absolute top-0 end-0 p-3">
+    <a href="/loginPage" id="loginBtn" class="btn btn-outline-primary btn-sm" style="display:none;">로그인</a>
+    <button id="logoutBtn" class="btn btn-outline-danger btn-sm" style="display:none;">로그아웃</button>
 </div>
 
-<div class="main-layout">
-    <!-- 달력 -->
-    <div id="calendar"></div>
+<div class="main-container">
+    <!-- Left: Calendar -->
+    <div class="calendar-container">
+        <div id="calendar"></div>
+    </div>
 
-    <!-- 오른쪽 프로필 박스 -->
-    <div class="profile-box">
-        <div class="profile">
-            <img src="https://via.placeholder.com/80" />
-            <div>이름1</div>
+    <!-- Right: Couple Profile -->
+    <div class="profile-container">
+        <h4>우리의 커플 다이어리</h4>
+        <div class="profile-pair">
+            <div class="person">
+                <img id="person1Img" src="https://via.placeholder.com/96"/>
+                <p id="person1Name">이름1</p>
+            </div>
+            <div class="heart">❤</div>
+            <div class="person">
+                <img id="person2Img" src="https://via.placeholder.com/96"/>
+                <p id="person2Name">이름2</p>
+            </div>
         </div>
-        <div class="heart">❤</div>
-        <div class="profile">
-            <img src="https://via.placeholder.com/80" />
-            <div>이름2</div>
+        <div class="days-counter">
+            <p class="text-muted">함께한 지</p>
+            <p id="dayCount" class="fs-4 fw-bold">0일</p>
         </div>
-        <button class="btn btn-sm btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#inviteModal" id="inviteBtn" style="display:none">
+
+        <button class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#inviteModal" id="inviteBtn"
+                style="display:none;">
             💌 커플 연결하기
         </button>
     </div>
 </div>
 
-<!--일기작성모달-->
+<!-- 일기작성 모달 -->
 <div class="modal fade" id="diaryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="diaryForm" class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">일기 작성 <span id="modalDateLabel"></span></h5>
+        <form id="diaryForm" class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title">일기 작성 <span id="modalDateLabel"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body"><input type="hidden" id="diaryId"/> <input type="hidden" id="diaryDate"/>
-                <div class="mb-3"><label class="form-label">날씨</label> <input id="weatherInput" class="form-control"/>
-                </div>
-                <div class="mb-3"><label class="form-label">기온</label> <input id="tempInput" type="number" step="0.1"
-                                                                              class="form-control"/></div>
-                <div class="mb-3"><label class="form-label">기분</label> <select id="moodInput" class="form-select">
+            <div class="modal-body">
+                <label>날씨</label>
+                <select id="weatherSelect" class="form-select mb-2">
                     <option value="">선택</option>
-                    <option>좋음</option>
-                    <option>보통</option>
-                    <option>나쁨</option>
-                </select></div>
-                <div class="mb-3"><label class="form-label">내용</label> <textarea id="contentInput" rows="6"
-                                                                                 class="form-control"></textarea></div>
+                    <option value="sunny">☀️ 맑음</option>
+                    <option value="cloudy">☁️ 흐림</option>
+                    <option value="rainy">🌧️ 비</option>
+                    <option value="snowy">❄️ 눈</option>
+                </select>
+                <label>기온 (°C)</label>
+                <input type="number" id="tempInput" class="form-control mb-2" placeholder="25"/>
+
+                <label>오늘의 기분</label>
+                <div class="mood-grid">
+                    <div id="moodButtons" class="mood-grid">
+
+                        <div class="mood-button"><span class="mood-emoji">😊</span>좋음</div>
+                        <div class="mood-button"><span class="mood-emoji">😌</span>평온</div>
+                        <div class="mood-button"><span class="mood-emoji">🥰</span>설렘</div>
+                        <div class="mood-button"><span class="mood-emoji">😆</span>신남</div>
+                        <div class="mood-button"><span class="mood-emoji">😢</span>슬픔</div>
+                        <div class="mood-button"><span class="mood-emoji">😠</span>화남</div>
+                    </div>
+                </div>
+                    <span id="moodDisplay" class="text-muted" style="display:none;"></span>
+                <label class="mt-3">내용</label>
+                <textarea id="contentInput" rows="5" class="form-control" placeholder="오늘 있었던 일을 적어보세요..."></textarea>
             </div>
+
             <div class="modal-footer">
                 <button type="button" id="deleteBtn" class="btn btn-danger" style="display:none">삭제</button>
-                gg
-                <button type="submit" class="btn btn-primary">저장</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="submit" class="btn btn-save">저장</button>
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
             </div>
         </form>
     </div>
 </div>
 
-<!--커플 연동 모달-->
+<!-- 커플연동 모달 -->
 <div class="modal fade" id="inviteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -150,16 +254,12 @@
                 <h5 class="modal-title">커플 연결하기</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                <!-- 초대코드 생성 -->
+            <div class="modal-body"><input type="hidden" id="diaryId"/> <input type="hidden" id="diaryDate"/>
                 <div id="inviteSection">
                     <button id="generateInviteBtn" class="btn btn-success w-100">초대코드 발급</button>
                     <p id="inviteCodeDisplay" class="mt-3 text-center fw-bold"></p>
                 </div>
-
                 <hr>
-
-                <!-- 초대코드 입력 -->
                 <div id="acceptSection">
                     <input type="text" id="inviteCodeInput" class="form-control" placeholder="초대코드 입력">
                     <button id="acceptInviteBtn" class="btn btn-primary w-100 mt-2">연결하기</button>
@@ -168,19 +268,21 @@
         </div>
     </div>
 </div>
+
 <script>
+
     // 비동기
     document.addEventListener("DOMContentLoaded", async () => {
         try {
-            const res = await fetch("/CheckAuth", { credentials: "include" });
+            const res = await fetch("/CheckAuth", {credentials: "include"});
             if (res.ok) {
                 document.getElementById("logoutBtn").style.display = "inline";
                 const data = await res.json();
                 console.log("auth:" + data);
 
                 //커플Id X
-                if(!data.coupleId){
-                    document.getElementById("inviteBtn").style.display="inline";
+                if (!data.coupleId) {
+                    document.getElementById("inviteBtn").style.display = "inline";
                 }
             } else {
                 document.getElementById("loginBtn").style.display = "inline";
@@ -189,10 +291,38 @@
             console.error(e);
             document.getElementById("loginBtn").style.display = "inline";
         }
-    });
-    document.addEventListener('DOMContentLoaded', function () {
+
         var calendarEl = document.getElementById('calendar');
         const modal = new bootstrap.Modal(document.getElementById('diaryModal'));
+
+        //기분 선택
+        let selectedMood = "";
+
+
+        const moodButtons = document.querySelectorAll(".mood-button");
+
+        moodButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // 기존 선택 해제
+                moodButtons.forEach(b => b.classList.remove("active"));
+                // 클릭한 버튼 강조
+                btn.classList.add("active");
+
+                // 선택한 기분 텍스트 저장
+                selectedMood = btn.textContent.trim();
+                console.log("선택한 기분:", selectedMood);
+            });
+        });
+
+        // form inputs
+        const idInput = document.getElementById('diaryId');
+        const dateInput = document.getElementById('diaryDate');
+        const dateLabel = document.getElementById('modalDateLabel');
+        const weatherInput = document.getElementById('weatherSelect');
+        const tempInput = document.getElementById('tempInput');
+        //const moodInput = document.getElementById('moodInput');
+        const contentInput = document.getElementById('contentInput');
+        const deleteBtn = document.getElementById('deleteBtn');
 
         async function isAuthenticated() {
             const res = await fetch("/CheckAuth", {
@@ -200,44 +330,59 @@
                 credentials: 'include', // 쿠키 자동 포함 (JWT가 쿠키에 있으니까 필수)
                 headers: {'Accept': 'application/json'}
             });
+            if(res.ok){
+                const data=await res.json();
+                currentUser=data.userId;
+            }
             console.log("[CheckAuth]:  " + res.status);
             return res.ok;
         }
 
-        // form inputs
-        const idInput = document.getElementById('diaryId');
-        const dateInput = document.getElementById('diaryDate');
-        const dateLabel = document.getElementById('modalDateLabel');
-        const weatherInput = document.getElementById('weatherInput');
-        const tempInput = document.getElementById('tempInput');
-        const moodInput = document.getElementById('moodInput');
-        const contentInput = document.getElementById('contentInput');
-        const deleteBtn = document.getElementById('deleteBtn');
-
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            events:'/diary/events',
-            eventDisplay: 'block',     // 칸 안에 텍스트로 표시
-            eventTextColor: '#fff',    // 글씨색
-            eventBackgroundColor: '#f68bb5', // 배경색 (핑크)
-            eventClick: function(info) {
+            events: '/diary/events',
+            eventDisplay: 'block',
+            eventTextColor: '#fff',
+            eventBackgroundColor: '#f68bb5',
+            eventClick: function (info) {
                 // 클릭했을 때 상세 모달 띄우기
                 const diaryId = info.event.id;
-                fetch(`/diary/${diaryId}`)
+                fetch(`/diary/getDiary/${diaryId}`)
                     .then(res => res.json())
                     .then(diary => {
                         dateLabel.textContent = diary.date;
                         dateInput.value = diary.date;
                         idInput.value = diary.id;
                         contentInput.value = diary.content;
-                        moodInput.value = diary.mood;
+                        moodButtons.forEach(b => {
+                            if (b.textContent.trim() === diary.mood) b.classList.add("active");
+                            else b.classList.remove("active");
+                        });
+                        selectedMood = diary.mood;
                         tempInput.value = diary.temperature;
                         weatherInput.value = diary.weather;
                         deleteBtn.style.display = 'block';
                         modal.show();
+
+                        document.getElementById("moodButtons").style.display = "none";
+                        const moodDisplay = document.getElementById("moodDisplay");
+                        moodDisplay.style.display = "block";
+                        moodDisplay.textContent = `${diary.mood}`;
+
+
+                        dateInput.setAttribute("readonly", true);
+                        contentInput.setAttribute("readonly", true);
+                        tempInput.setAttribute("readonly", true);
+                        weatherInput.setAttribute("disabled", true);
                     });
             },
             dateClick: async (info) => {
+                dateInput.removeAttribute("readonly");
+                contentInput.removeAttribute("readonly");
+                tempInput.removeAttribute("readonly");
+                weatherInput.removeAttribute("disabled");
+                moodButtons.forEach(b => b.removeAttribute("disabled"));
+
                 const authed = await isAuthenticated();
                 if (!authed) {
                     if (confirm("로그인이 필요한 기능입니다. 로그인페이지로 이동할까요?")) {
@@ -247,48 +392,58 @@
                 }
                 //글 있는 지 없는지 여부도 체크
                 const clickedDate = info.dateStr; // YYYY-MM-DD
-                console.log("cc"+clickedDate);
+                console.log("cc" + clickedDate);
                 dateLabel.textContent = clickedDate;
                 dateInput.value = clickedDate;
                 idInput.value = '';
                 deleteBtn.style.display = 'none';
                 contentInput.value = '';
-                moodInput.value = '';
+                selectedMood = '';
+                moodButtons.forEach(b => b.classList.remove("active"));
                 tempInput.value = '';
                 weatherInput.value = '';
 
+
                 //서버에서 날씨 정보가져오기
                 try {
-                    const w = await fetch(`/diary/getWeather?date=${clickedDate}`, {
+                    const w = await fetch(`/diary/getWeather?date=${clickedDate}&t=${Date.now()}`, {
                         credentials: 'include',
-
+                        cache: 'no-store' // 브라우저가 응답을 캐시에 저장하지 않음
                     });
-                    console.log(clickedDate);
                     if (w.ok) {
                         const data = await w.json();
                         console.log("가져온 데이터" + data);
 
-                        // 1) OpenWeatherMap 원본(JSON) 형태 대응
                         const owWeather = data?.weather?.[0]?.main;
                         const owTempK = data?.main?.temp;
                         const owTempC = typeof owTempK === 'number' ? +(owTempK - 273.15).toFixed(1) : null;
-
-
-                        // 2) 서버가 DateWeather/DTO로 내려줄 수도 있을 때(백엔드가 바뀌어도 안전하게)
-                        const dtoWeather = data?.weather || data?.main;      // ex) "Clear" or "Clouds"
+                        const dtoWeather = data?.weather || data?.main;
                         const dtoTempC = (typeof data?.temperature === 'number') ? data.temperature
-                            : (typeof data?.temp === 'number') ? data.temp
-                                : null;
+                            : (typeof data?.temp === 'number') ? data.temp : null;
 
-
-                        // 3) 최종 값 선택(원본 우선, 없으면 DTO 값)
                         const weatherVal = owWeather ?? dtoWeather ?? '정보없음';
                         const tempVal = (owTempC ?? dtoTempC);
 
-                        weatherInput.value = weatherVal;
+
+                        const weatherMap = {
+                            'Clear': 'sunny',
+                            'sunny': 'sunny',
+                            'Rain': 'rainy',
+                            'rainy': 'rainy',
+                            'Clouds': 'cloudy',
+                            'cloudy': 'cloudy',
+                            'Snow': 'snowy',
+                            'snowy': 'snowy'
+                        };
+
+                        if (weatherVal && weatherMap[weatherVal]) {
+                            weatherInput.value = weatherMap[weatherVal];
+                        } else {
+                            weatherInput.value = '';
+                        }
+
                         tempInput.value = (tempVal != null) ? tempVal : '정보없음';
                     }
-
                 } catch (err) {
                     console.log(err);
                     alert("에러가 발생했습니다");
@@ -300,7 +455,7 @@
 
         // 초대코드 발급
         document.getElementById("generateInviteBtn").addEventListener("click", async () => {
-            const res = await fetch("/couple/invite", { method: "POST", credentials: "include" });
+            const res = await fetch("/couple/invite", {method: "POST", credentials: "include"});
             if (res.ok) {
                 const code = await res.text();
                 document.getElementById("inviteCodeDisplay").innerText = "📢 초대코드: " + code;
@@ -317,7 +472,7 @@
                 return;
             }
 
-            const res = await fetch("/couple/accept?code=" + code, { method: "POST", credentials: "include" });
+            const res = await fetch("/couple/accept?code=" + code, {method: "POST", credentials: "include"});
             const msg = await res.text();
             if (res.ok) {
                 alert(msg);
@@ -336,8 +491,9 @@
                 date: dateInput.value,
                 weather: weatherInput.value,
                 temperature: parseFloat(tempInput.value) || 0,
-                mood: moodInput.value,
-                content: contentInput.value
+                mood: selectedMood,
+                content: contentInput.value,
+                userId:currentUser
             };
 
             try {
@@ -358,6 +514,19 @@
             } catch (err) {
                 console.error(err);
                 alert("에러 발생!");
+            }
+        });
+        document.getElementById("logoutBtn").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const res = await fetch("/logout", {
+                method: "GET",
+                credentials: "include"
+            });
+            if (res.ok) {
+                alert("로그아웃 완료!");
+                location.href = "/"; // 로그인 페이지로 이동
+            } else {
+                alert("로그아웃 실패");
             }
         });
 

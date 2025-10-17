@@ -5,7 +5,6 @@ import com.example.coupleDiary.domain.DateWeather;
 import com.example.coupleDiary.domain.Diary;
 import com.example.coupleDiary.repository.DateWeatherRepository;
 import com.example.coupleDiary.repository.DiaryRepository;
-import lombok.AllArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,19 +13,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class DiaryService {
 
     private final DateWeatherRepository dateWeatherRepository;
@@ -44,21 +43,24 @@ public class DiaryService {
     }
 
     //해당 날짜 날씨 데이터 체크
+    @Transactional(readOnly = false)
     public DateWeather getDateWeather(LocalDate date){
-        List<DateWeather> dateWeaterList=dateWeatherRepository.findAllByDate(date);
-        System.out.println("해당 날짜 데이터 사이즈: "+dateWeaterList.size());
-        if(dateWeaterList.size()==0){
-            DateWeather newWeather = getWeatherFromApi();
+        List<DateWeather> dateWeatherList = dateWeatherRepository.findAllByDate(date);
+        System.out.println("해당 날짜 데이터 사이즈: " + dateWeatherList.size());
+
+        if (dateWeatherList.isEmpty()) {
+            DateWeather newWeather = getWeatherFromApi(date);
             dateWeatherRepository.save(newWeather);
-            return getWeatherFromApi();
-        }else{
-            return dateWeaterList.get(0);
+            System.out.println("✅ 새 날씨 저장됨: " + newWeather.getWeather() + ", " + newWeather.getTemperature());
+            return newWeather;
+        } else {
+            return dateWeatherList.get(0);
         }
     }
 
 
     //날씨 데이터 저장
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Scheduled(cron = "0 0 1 * * *") // 매일 새벽 1시 0분 0초 마다
     public void saveWeatherDate(){
         logger.info("데이터 잘 가져옴");
@@ -75,6 +77,25 @@ public class DiaryService {
 
         DateWeather dateWeather = new DateWeather();
         dateWeather.setDate(LocalDate.now());
+        dateWeather.setWeather(parsedWeather.get("main").toString());
+        Object t = parsedWeather.get("temp");
+
+        double temp = (t instanceof Number) ? ((Number) t).doubleValue()
+                : Double.parseDouble(String.valueOf(t));
+        int rounded = (int) Math.round(temp);
+        dateWeather.setTemperature(rounded);
+        return dateWeather;
+    }
+
+    private DateWeather getWeatherFromApi(LocalDate targetDate){
+        String weatherData = getWeatherString();
+        System.out.println(getWeatherString());
+
+        //받아온 날씨 json 파싱하기
+        Map<String,Object> parsedWeather = parseWeather(weatherData);
+
+        DateWeather dateWeather = new DateWeather();
+        dateWeather.setDate(targetDate);
         dateWeather.setWeather(parsedWeather.get("main").toString());
         Object t = parsedWeather.get("temp");
 

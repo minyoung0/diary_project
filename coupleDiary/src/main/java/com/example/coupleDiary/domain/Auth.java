@@ -1,6 +1,7 @@
 package com.example.coupleDiary.domain;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Auth {
 
@@ -18,15 +19,15 @@ public class Auth {
         private String nickname;
         private String password;
         private String email;
-        private String profileImg;  // 프로필 이미지까지 넣고 싶으면 추가
-
+        private MultipartFile profileImg;  // 프로필 이미지까지 넣고 싶으면 추가
+        private String profileImgPath;
         public MemberEntity toEntity() {
             return MemberEntity.builder()
                     .userId(this.userId)
                     .nickname(this.nickname)
                     .password(this.password)
                     .email(this.email)
-                    .profileImg(this.profileImg)
+                    .profileImg(this.profileImgPath)
                     .build();
         }
     }

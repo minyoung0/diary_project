@@ -1,10 +1,7 @@
 package com.example.coupleDiary.domain;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,15 +12,15 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity(name="date_weather")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="tb_weatherlog")
 public class DateWeather {
     @Id
-    @Column(name="date")
+    @Column(name="date", nullable=false)
     private LocalDate date;
+
     private String weather;
-    @Column(name="temperature")
     private double temperature;
 }
