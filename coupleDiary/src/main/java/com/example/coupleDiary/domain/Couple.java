@@ -1,9 +1,6 @@
 package com.example.coupleDiary.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +16,8 @@ import java.time.LocalDateTime;
 @Table(name="tb_couple")
 public class Couple {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ 자동 증가 설정
+    @Column(name = "couple_id")
     private int coupleId;
 
     @Column(name="user1_id")
@@ -27,4 +26,6 @@ public class Couple {
     private String user2Id;
     @Column(name="created_at")
     private LocalDateTime createdAt;
+    @Column(name="anniversary")
+    private LocalDateTime anniversary;
 }

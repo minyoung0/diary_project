@@ -40,7 +40,7 @@ public class MemberEntity implements UserDetails {
     private String profileImg;
 
     @Column(name="couple_id")
-    private int coupleId;
+    private Integer coupleId = null;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

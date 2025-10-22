@@ -61,8 +61,7 @@
 <main class="card" role="main" aria-labelledby="title">
     <h1 id="title">회원가입</h1>
     <span class="red-text">*</span>은 필수항목입니다.
-    <!-- Thymeleaf 사용 시 action을 th:action으로 바꿔도 됩니다. -->
-    <form method="post" action="/signup" autocomplete="on" enctype="multipart/form-data">
+    <form id="joinForm" autocomplete="on" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="row">
             <div>
@@ -109,50 +108,95 @@
         <p class="muted">이미 계정이 있나요? <a href="/loginPage">로그인</a></p>
     </form>
 </main>
-
 <script>
-    const form = document.querySelector('form');
-    const pw = document.getElementById('password');
-    const pw2 = document.getElementById('passwordConfirm');
+    const form = document.getElementById("joinForm");
+    const pw = document.getElementById("password");
+    const pw2 = document.getElementById("passwordConfirm");
 
-    form.addEventListener('submit', (e) => {
-        // 비밀번호 일치 커스텀 검증
+    document.getElementById('joinForm').addEventListener('submit',async(e)=>{
+         e.preventDefault();
+        // 비밀번호 확인
         if (pw.value !== pw2.value) {
-            pw2.setCustomValidity('비밀번호가 일치하지 않습니다.');
+            pw2.classList.add("shake");
+            pw2.setCustomValidity("비밀번호가 일치하지 않습니다.");
+            pw2.reportValidity();
+            return;
         } else {
-            pw2.setCustomValidity('');
+            pw2.setCustomValidity("");
         }
-
-        // 브라우저 유효성 검사 실행
+        //유효성 체크
         if (!form.checkValidity()) {
-            e.preventDefault();                    // 전송 막기
-            form.classList.add('was-submitted');   // 이때부터만 invalid 스타일 적용
-
-            // 첫 번째 invalid 필드 흔들고 포커스
-            const firstInvalid = form.querySelector(':invalid');
-            if (firstInvalid) {
-                firstInvalid.classList.remove('shake'); // 연속 제출 시 애니메이션 재시작 트릭
-                void firstInvalid.offsetWidth;
-                firstInvalid.classList.add('shake');
-                firstInvalid.focus();
-                firstInvalid.reportValidity();       // 기본 메시지 노출(선택)
-            }
+            form.classList.add("was-submitted");
+            form.querySelector(":invalid")?.focus();
+            return;
         }
-    });
+        const formData = new FormData(form);
+        try{
+            const res = await fetch("/signup", {
+                method: "POST",
+                body: formData
+            });
 
-    // 사용자가 다시 입력하면 커스텀 에러 해제
-    pw2.addEventListener('input', () => pw2.setCustomValidity(''));
+            if (res.ok) {
+                alert("회원가입이 완료되었습니다!");
+                window.location.href = "/";
+            } else {
+                const err = await res.text();
+                alert("회원가입 실패: " + err);
+            }
+        }catch (error){
+            console.error(error);
+            alert("오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        }
+    })
+    pw2.addEventListener("input", () => pw2.setCustomValidity(""));
 </script>
-<script th:if="${errormessage}" th:inline="javascript">
-    console.log("이미사용중인 아이디입니다")
-    alert([[${errormessage}]]);
-    const userIdInput = document.getElementById('userId');
-    if (userIdInput) {
-        userIdInput.classList.remove('shake');
-        void userIdInput.offsetWidth;
-        userIdInput.classList.add('shake');
-        userIdInput.focus();
-    }
-</script>
+<!--<script th:if="${msg}" th:inline="javascript">-->
+<!--    alert([[${msg}]]);-->
+<!--</script>-->
+<!--<script>-->
+<!--    const form = document.querySelector('form');-->
+<!--    const pw = document.getElementById('password');-->
+<!--    const pw2 = document.getElementById('passwordConfirm');-->
+
+<!--    form.addEventListener('submit', (e) => {-->
+<!--        // 비밀번호 일치 커스텀 검증-->
+<!--        if (pw.value !== pw2.value) {-->
+<!--            pw2.setCustomValidity('비밀번호가 일치하지 않습니다.');-->
+<!--        } else {-->
+<!--            pw2.setCustomValidity('');-->
+<!--        }-->
+
+<!--        // 브라우저 유효성 검사 실행-->
+<!--        if (!form.checkValidity()) {-->
+<!--            e.preventDefault();                    // 전송 막기-->
+<!--            form.classList.add('was-submitted');   // 이때부터만 invalid 스타일 적용-->
+
+<!--            // 첫 번째 invalid 필드 흔들고 포커스-->
+<!--            const firstInvalid = form.querySelector(':invalid');-->
+<!--            if (firstInvalid) {-->
+<!--                firstInvalid.classList.remove('shake'); // 연속 제출 시 애니메이션 재시작 트릭-->
+<!--                void firstInvalid.offsetWidth;-->
+<!--                firstInvalid.classList.add('shake');-->
+<!--                firstInvalid.focus();-->
+<!--                firstInvalid.reportValidity();       // 기본 메시지 노출(선택)-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+
+<!--    // 사용자가 다시 입력하면 커스텀 에러 해제-->
+<!--    pw2.addEventListener('input', () => pw2.setCustomValidity(''));-->
+<!--</script>-->
+<!--<script th:if="${errormessage}" th:inline="javascript">-->
+<!--    console.log("이미사용중인 아이디입니다")-->
+<!--    alert([[${errormessage}]]);-->
+<!--    const userIdInput = document.getElementById('userId');-->
+<!--    if (userIdInput) {-->
+<!--        userIdInput.classList.remove('shake');-->
+<!--        void userIdInput.offsetWidth;-->
+<!--        userIdInput.classList.add('shake');-->
+<!--        userIdInput.focus();-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

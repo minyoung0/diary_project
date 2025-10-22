@@ -2,6 +2,8 @@ package com.example.coupleDiary.controller;
 
 import com.example.coupleDiary.domain.Auth;
 import com.example.coupleDiary.domain.MemberEntity;
+import com.example.coupleDiary.repository.CoupleRepository;
+import com.example.coupleDiary.repository.MemberRepository;
 import com.example.coupleDiary.security.TokenProvider;
 import com.example.coupleDiary.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -35,6 +39,8 @@ public class UserController {
 
     private final TokenProvider tokenProvider;
     private final RedisTemplate redisTemplate;
+    private final MemberRepository memberRepository;
+    private final CoupleRepository coupleRepository;
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute Auth.SignUp request, RedirectAttributes ra,
@@ -103,7 +109,30 @@ public class UserController {
                 .path("/")
                 .maxAge(Duration.ofDays(7))
                 .build();
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("userId", member.getUserId());
+        responseData.put("nickname", member.getNickname());
+        responseData.put("nickname", member.getNickname());
+        responseData.put("profileImg",
+                member.getProfileImg() != null ? member.getProfileImg() : "/profileImg/img.png");
+        responseData.put("coupleId", member.getCoupleId());
 
+        Integer coupleId = member.getCoupleId();
+        if (coupleId != null && coupleId > 0) {
+            var partner = memberRepository.findPartnerByCoupleId(coupleId, member.getUserId());
+            if (partner != null) {
+                responseData.put("coupleId", coupleId);
+                responseData.put("partnerNickname", partner.getNickname());
+                responseData.put("partnerProfileImg",
+                        partner.getProfileImg() != null ? partner.getProfileImg() : "/profileImg/img.png");
+            }
+
+            var couple = coupleRepository.findById(coupleId).orElse(null);
+            if (couple != null && couple.getAnniversary() != null) {
+                long days = ChronoUnit.DAYS.between(couple.getAnniversary().toLocalDate(), LocalDate.now());
+                responseData.put("dayCount", days);
+            }
+        }
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
@@ -112,13 +141,12 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<Void> logout(HttpServletRequest request){
+    public ResponseEntity<String> logout(HttpServletRequest request){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userId = auth.getName();
-
-        // Redis에서 refresh 토큰 제거
-        redisTemplate.delete("refresh:" + userId);
-
+        if (auth != null) {
+            String userId = auth.getName();
+            redisTemplate.delete("refresh:" + userId);
+        }
         // 쿠키 제거
         ResponseCookie delAccess = ResponseCookie.from("access_token", "")
                 .httpOnly(true)
@@ -136,10 +164,10 @@ public class UserController {
                 .maxAge(0)
                 .build();
 
-        return ResponseEntity.noContent()
+        return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, delAccess.toString())
                 .header(HttpHeaders.SET_COOKIE, delRefresh.toString())
-                .build();
+                .body("logout success");
     }
 
    @GetMapping("/CheckAuth")
@@ -153,13 +181,27 @@ public class UserController {
            return ResponseEntity.status(401).build();
        }
 
-       MemberEntity user = (MemberEntity) auth.getPrincipal();
+       MemberEntity member = (MemberEntity) auth.getPrincipal();
 
-       Map<String, Object> result = new HashMap<>();
-       result.put("userId", user.getUserId());
-       result.put("coupleId", user.getCoupleId());
+       Map<String, Object> response = new HashMap<>();
+       response.put("userId", member.getUserId());
+       response.put("nickname", member.getNickname());
+       response.put("profileImg", member.getProfileImg() != null ? member.getProfileImg() : "/profileImg/img.png");
+       response.put("coupleId", member.getCoupleId());
 
-       return ResponseEntity.ok(result);
+       if (member.getCoupleId()!=null && member.getCoupleId() >0 && member.getCoupleId() > 0) {
+           var partner = memberRepository.findPartnerByCoupleId(member.getCoupleId(), member.getUserId());
+           var couple = coupleRepository.findById(member.getCoupleId()).orElse(null);
+           long days = 0;
+           if (couple != null && couple.getCreatedAt() != null) {
+               days = ChronoUnit.DAYS.between(couple.getCreatedAt().toLocalDate(), LocalDate.now());
+           }
+
+           response.put("partnerNickname", partner.getNickname());
+           response.put("partnerProfileImg", partner.getProfileImg() != null ? partner.getProfileImg() : "/profileImg/img.png");
+           response.put("dayCount", days);
+       }
+       return ResponseEntity.ok(response);
    }
 
 }

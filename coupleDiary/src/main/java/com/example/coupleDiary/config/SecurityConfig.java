@@ -28,16 +28,15 @@ public class SecurityConfig {
                                 "/", "/loginPage", "/joinPage",
                                 "/signup", "/signin", "/error",
                                 "/css/**", "/js/**", "/images/**",
-                                "/logout","/diary/**"
+                                "/logout","/diary/**","/profileImg/**","/checkAuth"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form.disable())   // ✅ 폼로그인 비활성화(세션X)
-                .logout(lo -> lo.logoutUrl("/logout").logoutSuccessUrl("/"));
-
+                .formLogin(form -> form.disable())
+                .logout(logout -> logout.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
         // ✅ JWT 필터 등록
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        //http.addFilterBefore(jwtAuthenticationFilter, SecurityContextHolderFilter.class);
         return http.build();
     }
 
@@ -46,5 +45,18 @@ public class SecurityConfig {
         return cfg.getAuthenticationManager();
     }
 
+    @Bean
+    public org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
+        var config = new org.springframework.web.cors.CorsConfiguration();
+        config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.setAllowCredentials(true);
+        config.addExposedHeader("Set-Cookie");
+
+        var source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 
 }

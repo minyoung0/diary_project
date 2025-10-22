@@ -21,5 +21,11 @@ public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
 
     @Query("Select m.userId from MemberEntity m where m.coupleId = :coupleId")
     List<String> findUserIdsByCoupleId(@Param("coupleId")int coupleId);
+
+    @Query("SELECT m FROM MemberEntity m WHERE m.coupleId = :coupleId AND m.userId <> :userId")
+    MemberEntity findPartnerByCoupleId(@Param("coupleId") int coupleId, @Param("userId") String userId);
+
+    @Query("Select m From MemberEntity  m WHERE m.coupleId = :coupleId")
+    MemberEntity findById(@Param("coupleId")int coupleId);
 }
 

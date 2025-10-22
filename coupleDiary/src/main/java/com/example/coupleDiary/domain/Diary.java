@@ -40,5 +40,7 @@ public class Diary {
 
     @Column(name="user_id")
     private String userId;
+    @Transient
+    private String nickname;
 
 }

@@ -72,28 +72,32 @@ public class DiaryController {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             MemberEntity user = (MemberEntity) auth.getPrincipal();
 
-            int coupleId =  user.getCoupleId();
+            Integer coupleId =  user.getCoupleId();
             List<String> userIds;
-            if(coupleId >=0 ){
+            if(coupleId >=0 && coupleId!=null){
                 userIds = memberRepository.findUserIdsByCoupleId(coupleId);
             }else{
                 userIds = List.of(user.getUserId());
             }
-            List<Diary> allDiaries = diaryRepository.findByUserIdIn(userIds);
+            List<Map<String, Object>> allDiaries = diaryRepository.findDiariesWithNickname(userIds);
             List<Map<String, Object>> diaryList = new ArrayList<>();
-            for(Diary d : allDiaries){
-                Map<String,Object> diary = new HashMap<>();
-                diary.put("title", d.getUserId());
-                diary.put("content","📙일기 : " + d.getContent());
-                diary.put("writer",d.getUserId());
-                diary.put("id",d.getDiaryId());
-                diary.put("mood",d.getMood());
-                diary.put("weather",d.getWeather());
-                diary.put("date",d.getCreatedAt());
-                diary.put("start", d.getCreatedAt().toString());
-                diary.put("backgroundColor",
-                        d.getUserId().equals(user.getUserId()) ? "#ffb896" : "#b8d9ff");
 
+            for (Map<String, Object> row : allDiaries) {
+                Map<String, Object> diary = new HashMap<>();
+                String nickname = (String) row.get("nickname");
+                diary.put("title", nickname + " : " + row.get("content"));
+                diary.put("content", row.get("content"));
+                diary.put("writer", row.get("user_id"));
+                diary.put("id", row.get("diary_id"));
+                diary.put("mood", row.get("mood"));
+                diary.put("weather", row.get("weather"));
+                diary.put("date", row.get("created_at"));
+                String createdAt = row.get("created_at").toString();
+                String dateOnly = createdAt.contains("T") ? createdAt.split("T")[0] : createdAt;
+                diary.put("start", dateOnly);
+                diary.put("allDay", true);
+                diary.put("backgroundColor",
+                        row.get("user_id").equals(user.getUserId()) ? "#ffb896" : "#b8d9ff");
                 diaryList.add(diary);
             }
             return ResponseEntity.ok(diaryList);
