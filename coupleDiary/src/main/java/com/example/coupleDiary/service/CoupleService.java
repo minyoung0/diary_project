@@ -22,17 +22,6 @@ public class CoupleService {
     private final CoupleRepository coupleRepository;
     private final MemberRepository memberRepository;
 
-
-    // 1) 초대코드 생성 & Redis 저장
-    public String createInviteCode(String userId) {
-        String inviteCode = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
-
-        // TTL 10분짜리 초대 코드 저장
-        redisTemplate.opsForValue().set("invite:" + inviteCode, userId, 10, TimeUnit.MINUTES);
-
-        return inviteCode;
-    }
-
     @Transactional
     public String generateInviteCode(String userId){
         // 6자리 랜덤 코드 생성

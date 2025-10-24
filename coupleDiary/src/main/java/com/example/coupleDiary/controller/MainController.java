@@ -21,5 +21,7 @@ public class MainController {
     @GetMapping("/joinPage")
     public String joinPage(){return "user/joinPage";}
 
+    @GetMapping("/editUserPage")
+    public String editUserPage() { return "user/editUser"; }
 
 }

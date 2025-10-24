@@ -28,7 +28,9 @@ public interface DiaryRepository extends JpaRepository<Diary,Integer> {
                u.nickname
         FROM tb_diary d
         JOIN tb_user u ON d.user_id = u.user_id
-        WHERE d.user_id IN (:userIds)
+        WHERE d.user_id IN (:userIds) 
+        AND d.is_deleted=0
     """, nativeQuery = true)
     List<Map<String, Object>> findDiariesWithNickname(@Param("userIds") List<String> userIds);
+
 }

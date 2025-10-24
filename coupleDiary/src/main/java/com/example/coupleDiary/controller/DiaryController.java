@@ -36,13 +36,14 @@ public class DiaryController {
     }
 
 
+    //날씨 불러오기
     @GetMapping("/getWeather")
-    public ResponseEntity<?> getWeather(@RequestParam("date")LocalDate date){
+    public ResponseEntity<?> getWeather(@RequestParam("date") LocalDate date) {
         try {
-            System.out.println("[getWeather]"+date);
-            DateWeather dw= diaryService.getDateWeather(date);
+            System.out.println("[getWeather]" + date);
+            DateWeather dw = diaryService.getDateWeather(date);
             return ResponseEntity.ok(dw);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return ResponseEntity.badRequest().body("날씨불러오기 실패");
@@ -50,33 +51,35 @@ public class DiaryController {
 
     }
 
+    //일기 저장
     @PostMapping("/save")
     public ResponseEntity<Diary> saveDiary(@RequestBody Diary diary, Principal principal) {
-        try{
-            String username= principal.getName();
-            System.out.println("글쓴사람: "+username);
+        try {
+            String username = principal.getName();
+            System.out.println("글쓴사람: " + username);
             LocalDate today = LocalDate.now();
             diary.setCreatedAt(today);
             Diary saved = diaryService.saveDiary(diary);
             return ResponseEntity.ok(saved);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             throw new RuntimeException();
         }
 
     }
 
+    //모든 다이어리 불러오기
     @GetMapping("/events")
-    public ResponseEntity<?> getAllDiary(){
+    public ResponseEntity<?> getAllDiary() {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             MemberEntity user = (MemberEntity) auth.getPrincipal();
 
-            Integer coupleId =  user.getCoupleId();
+            Integer coupleId = user.getCoupleId();
             List<String> userIds;
-            if(coupleId >=0 && coupleId!=null){
+            if (coupleId >= 0 && coupleId != null) {
                 userIds = memberRepository.findUserIdsByCoupleId(coupleId);
-            }else{
+            } else {
                 userIds = List.of(user.getUserId());
             }
             List<Map<String, Object>> allDiaries = diaryRepository.findDiariesWithNickname(userIds);
@@ -101,20 +104,48 @@ public class DiaryController {
                 diaryList.add(diary);
             }
             return ResponseEntity.ok(diaryList);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(Collections.emptyList());
         }
-
     }
+
+    //특정 날짜 일기 불러오기
     @GetMapping("/getDiary/{diaryId}")
-    public ResponseEntity<?> getDiaryById(@PathVariable("diaryId") int diaryId){
+    public ResponseEntity<?> getDiaryById(@PathVariable("diaryId") int diaryId) {
         try {
             Diary diary = diaryRepository.findByDiaryId(diaryId);
             return ResponseEntity.ok(diary);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("일기불러오기 실패");
         }
+    }
+
+    //일기 내용 수정
+    @PostMapping("/update")
+    public ResponseEntity<?> updateDiary(@RequestBody Diary req) {
+        var diary = diaryRepository.findById(req.getDiaryId()).orElse(null);
+        if (diary == null) {
+            return ResponseEntity.badRequest().body("존재하지 않거나 삭제된 일기입니다");
+        }
+
+        diary.setContent(req.getContent());
+        diaryRepository.save(diary);
+
+        return ResponseEntity.ok("일기 수정 완료!");
+    }
+
+    //일기 삭제 (is_deleted =1 로 수정)
+    @PostMapping("/delete/{diaryId}")
+    public ResponseEntity<?> deleteDiary(@PathVariable int diaryId){
+        var diary = diaryRepository.findById(diaryId).orElse(null);
+        if (diary == null) {
+            return ResponseEntity.badRequest().body("일기를 찾을 수 없습니다.");
+        }
+
+        diary.setIsDeleted(1);
+        diaryRepository.save(diary);
+        return ResponseEntity.ok("삭제 완료");
     }
 }

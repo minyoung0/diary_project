@@ -159,14 +159,32 @@
             color: #fff;
             border: 1px solid #ff7b9c;
         }
+
+        .fc-daygrid-day-number {
+            color: #d17e5a !important; /* 원하는 색상 */
+            font-weight: 600;
+        }
+
+        .fc-col-header-cell-cushion {
+            color: rgb(211, 130, 53) !important;
+            font-weight: bold;
+        }
+
+        .fc-event {
+            background-color: #ffb896 !important;
+            border: none !important;
+            color: #5a3a2a !important; /* 기존 white 대신 갈색 글자 */
+            font-size: 12px;
+            border-radius: 6px;
+        }
     </style>
 </head>
 
 <body>
-<div id="authButtons" class="text-end position-absolute top-0 end-0 p-3">
-    <a href="/loginPage" id="loginBtn" class="btn btn-outline-primary btn-sm" style="display:none;">로그인</a>
-    <button type="button" id="logoutBtn" class="btn btn-outline-danger btn-sm" style="display:none;">로그아웃</button>
-</div>
+<!--<div id="authButtons" class="text-end position-absolute top-0 end-0 p-3">-->
+<!--    <a href="/loginPage" id="loginBtn" class="btn btn-outline-primary btn-sm" style="display:none;">로그인</a>-->
+<!--    <button type="button" id="logoutBtn" class="btn btn-outline-danger btn-sm" style="display:none;">로그아웃</button>-->
+<!--</div>-->
 
 <div class="main-container">
     <div class="calendar-container">
@@ -192,10 +210,17 @@
             <p id="dayCount" class="fs-4 fw-bold">0일</p>
         </div>
 
-        <button class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#inviteModal" id="inviteBtn"
-                style="display:none;">
-            💌 커플 연결하기
-        </button>
+        <div class="d-flex flex-column align-items-center gap-2 mt-3" id="profileButtons">
+            <a href="/loginPage" id="loginBtn" class="btn btn-outline-primary btn-sm w-100"
+               style="display:none;">로그인</a>
+            <button id="logoutBtn" class="btn btn-outline-danger btn-sm w-100" style="display:none;">로그아웃</button>
+            <a href="/editUserPage" id="myPageBtn" class="btn btn-outline-secondary btn-sm w-100" style="display:none;">내
+                정보 수정</a>
+            <button class="btn btn-outline-success btn-sm w-100" data-bs-toggle="modal"
+                    data-bs-target="#inviteModal" id="inviteBtn" style="display:none;">
+                💌 커플 연결하기
+            </button>
+        </div>
     </div>
 </div>
 
@@ -203,6 +228,7 @@
 <div class="modal fade" id="diaryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <form id="diaryForm" class="modal-content p-3">
+            <input type="hidden" id="diaryId"/>
             <div class="modal-header">
                 <h5 class="modal-title">일기 작성 <span id="modalDateLabel"></span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -237,6 +263,7 @@
             </div>
 
             <div class="modal-footer">
+                <button type="button" id="editBtn" class="btn btn-warning" style="display:none">수정</button>
                 <button type="button" id="deleteBtn" class="btn btn-danger" style="display:none">삭제</button>
                 <button type="submit" class="btn btn-save">저장</button>
                 <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
@@ -253,7 +280,7 @@
                 <h5 class="modal-title">커플 연결하기</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body"><input type="hidden" id="diaryId"/> <input type="hidden" id="diaryDate"/>
+            <div class="modal-body"> <input type="hidden" id="diaryDate"/>
                 <div id="inviteSection">
                     <button id="generateInviteBtn" class="btn btn-success w-100">초대코드 발급</button>
                     <p id="inviteCodeDisplay" class="mt-3 text-center fw-bold"></p>
@@ -266,6 +293,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -283,6 +311,7 @@
 
                 islogin = true;
                 currentUser = data.userId;
+                document.getElementById("myPageBtn").style.display = "inline";
                 document.getElementById("logoutBtn").style.display = "inline";
                 const myImg = data.profileImg || "/profileImg/img.png";
                 document.getElementById("person1Img").src = myImg;
@@ -336,6 +365,7 @@
         const tempInput = document.getElementById('tempInput');
         const contentInput = document.getElementById('contentInput');
         const deleteBtn = document.getElementById('deleteBtn');
+        const editBtn = document.getElementById("editBtn");
 
         const eventSource = islogin ? '/diary/events' : [];
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -352,28 +382,22 @@
                     .then(diary => {
                         dateLabel.textContent = diary.date;
                         dateInput.value = diary.date;
-                        idInput.value = diary.id;
+                        idInput.value = diary.diaryId;
                         contentInput.value = diary.content;
-                        moodButtons.forEach(b => {
-                            if (b.textContent.trim() === diary.mood) b.classList.add("active");
-                            else b.classList.remove("active");
-                        });
                         selectedMood = diary.mood;
                         tempInput.value = diary.temperature;
                         weatherInput.value = diary.weather;
+
                         deleteBtn.style.display = 'block';
+                        editBtn.style.display = 'block';
                         modal.show();
 
-                        document.getElementById("moodButtons").style.display = "none";
-                        const moodDisplay = document.getElementById("moodDisplay");
-                        moodDisplay.style.display = "block";
-                        moodDisplay.textContent = `${diary.mood}`;
-
-
+                        // 읽기 전용 모드
                         dateInput.setAttribute("readonly", true);
                         contentInput.setAttribute("readonly", true);
                         tempInput.setAttribute("readonly", true);
                         weatherInput.setAttribute("disabled", true);
+                        moodButtons.forEach(b => b.setAttribute("disabled", true));
                     });
             },
             dateClick: async (info) => {
@@ -410,6 +434,19 @@
             }
         });
         calendar.render();
+
+        async function isAuthenticated() {
+            const res = await fetch("/CheckAuth", {
+                method: 'GET', credentials: 'include', // 쿠키 자동 포함 (JWT가 쿠키에 있으니까 필수)
+                headers: {'Accept': 'application/json'}
+            });
+            if (res.ok) {
+                const data = await res.json();
+                currentUser = data.userId;
+            }
+            console.log("[CheckAuth]: " + res.status);
+            return res.ok;
+        }
 
         async function fetchWeatherData(clickedDate) {
             try {
@@ -449,7 +486,10 @@
                         weatherInput.value = '';
                     }
 
-                    tempInput.value = (tempVal != null) ? tempVal : '정보없음';
+                    const weather = weatherVal && weatherMap[weatherVal] ? weatherMap[weatherVal] : '';
+                    const temperature = (tempVal != null) ? tempVal : '정보없음';
+
+                    return { weather, temperature };
                 }
             } catch (err) {
                 console.log(err);
@@ -508,6 +548,7 @@
             e.preventDefault();
 
             const diaryData = {
+                diaryId:idInput.value||null,
                 date: dateInput.value,
                 weather: weatherInput.value,
                 temperature: parseFloat(tempInput.value) || 0,
@@ -515,9 +556,9 @@
                 content: contentInput.value,
                 userId: currentUser
             };
-
+            const url = diaryData.diaryId ? "/diary/update" : "/diary/save";
             try {
-                const res = await fetch("/diary/save", {
+                const res = await fetch(url, {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(diaryData),
@@ -525,11 +566,11 @@
                 });
 
                 if (res.ok) {
-                    alert("저장 성공!");
+                    alert(diaryData.diaryId ? "수정 완료!" : "저장 완료!");
                     modal.hide();
-                    calendar.refetchEvents(); // 이벤트 다시 로드
+                    calendar.refetchEvents();
                 } else {
-                    alert("저장 실패");
+                    alert("실패했습니다");
                 }
             } catch (err) {
                 console.error(err);
@@ -549,6 +590,38 @@
             } else {
                 alert("로그아웃 실패");
             }
+        });
+
+        deleteBtn.addEventListener("click", async () => {
+            if (!confirm("정말 삭제하시겠습니까?")) return;
+
+            const diaryId = idInput.value;
+            if (!diaryId) return;
+
+            const res = await fetch(`/diary/delete/${diaryId}`, {
+                method: "POST",
+                credentials: "include"
+            });
+
+            if (res.ok) {
+                alert("삭제 완료!");
+                modal.hide();
+                calendar.refetchEvents();
+            } else {
+                alert("삭제 실패");
+            }
+        });
+
+        editBtn.addEventListener("click", () => {
+            // 수정 가능하게 전환
+            dateInput.removeAttribute("readonly");
+            contentInput.removeAttribute("readonly");
+            tempInput.removeAttribute("readonly");
+            weatherInput.removeAttribute("disabled");
+            moodButtons.forEach(b => b.removeAttribute("disabled"));
+
+            editBtn.style.display = "none"; // 수정 버튼 숨기기
+            alert("수정 모드로 전환되었습니다!");
         });
 
     });

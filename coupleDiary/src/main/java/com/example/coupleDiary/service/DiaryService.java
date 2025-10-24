@@ -115,7 +115,7 @@ public class DiaryService {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
-            //응답코드 (ex: 202,401,...)
+            //응답코드
             int code = connection.getResponseCode();
 
             BufferedReader br;
@@ -170,10 +170,6 @@ public class DiaryService {
     public Diary saveDiary(Diary diary) {
         return diaryRepository.save(diary);
     }
-
-//    public List<Diary> getDiaryByDate(LocalDate date) {
-//        return diaryRepository.findAllByDate(date);
-//    }
 
     public void deleteDiary(Integer id) {
         diaryRepository.deleteById(id);
