@@ -181,17 +181,11 @@
 </head>
 
 <body>
-<!--<div id="authButtons" class="text-end position-absolute top-0 end-0 p-3">-->
-<!--    <a href="/loginPage" id="loginBtn" class="btn btn-outline-primary btn-sm" style="display:none;">로그인</a>-->
-<!--    <button type="button" id="logoutBtn" class="btn btn-outline-danger btn-sm" style="display:none;">로그아웃</button>-->
-<!--</div>-->
 
 <div class="main-container">
     <div class="calendar-container">
         <div id="calendar"></div>
     </div>
-
-    <!-- Right: Couple Profile -->
     <div class="profile-container">
         <h4>우리의 커플 다이어리</h4>
         <div class="profile-pair">
@@ -268,6 +262,17 @@
                 <button type="submit" class="btn btn-save">저장</button>
                 <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
             </div>
+
+            <div id="commentSection" class="mt-2" style="display:none">
+                <hr>
+                <h6>댓글</h6>
+                <div id="commentList" class="mb-3"></div>
+                <!-- 댓글 입력 -->
+                <div id="commentForm" class="input-group">
+                    <input type="text" id="commentInput" class="form-control" placeholder="댓글을 입력하세요...">
+                    <button type="button" id="commentSubmit" class="btn btn-outline-primary">등록</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -280,7 +285,7 @@
                 <h5 class="modal-title">커플 연결하기</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body"> <input type="hidden" id="diaryDate"/>
+            <div class="modal-body"><input type="hidden" id="diaryDate"/>
                 <div id="inviteSection">
                     <button id="generateInviteBtn" class="btn btn-success w-100">초대코드 발급</button>
                     <p id="inviteCodeDisplay" class="mt-3 text-center fw-bold"></p>
@@ -366,6 +371,7 @@
         const contentInput = document.getElementById('contentInput');
         const deleteBtn = document.getElementById('deleteBtn');
         const editBtn = document.getElementById("editBtn");
+        const commentSection = document.getElementById("commentSection");
 
         const eventSource = islogin ? '/diary/events' : [];
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -388,8 +394,29 @@
                         tempInput.value = diary.temperature;
                         weatherInput.value = diary.weather;
 
-                        deleteBtn.style.display = 'block';
-                        editBtn.style.display = 'block';
+                        const moodDisplay = document.getElementById("moodDisplay");
+                        moodDisplay.textContent = `${diary.mood || '정보 없음'}`;
+                        moodDisplay.style.display = "block";
+                        moodButtons.forEach(b => b.style.display = "none");
+
+                        moodButtons.forEach(b => {
+                            if (b.textContent.trim() === diary.mood) b.classList.add("active");
+                            else b.classList.remove("active");
+                        });
+
+                        if (diary.userId === currentUser) {
+                            editBtn.style.display = 'block';
+                            deleteBtn.style.display = 'block';
+                        } else {
+                            editBtn.style.display = 'none';
+                            deleteBtn.style.display = 'none';
+                        }
+
+                        document.querySelector('.btn-save').style.display = 'none';
+                        document.querySelector('.btn-cancel').style.display = 'block';
+                        commentSection.style.display = 'block';
+                        //댓글 불러오기
+                        loadComments(diaryId);
                         modal.show();
 
                         // 읽기 전용 모드
@@ -405,7 +432,11 @@
                 contentInput.removeAttribute("readonly");
                 tempInput.removeAttribute("readonly");
                 weatherInput.removeAttribute("disabled");
-                moodButtons.forEach(b => b.removeAttribute("disabled"));
+                moodButtons.forEach(b => {
+                    b.removeAttribute("disabled");
+                    b.style.display = "block";
+                });
+                document.getElementById("moodDisplay").style.display = "none";
 
                 const authed = await isAuthenticated();
                 if (!authed) {
@@ -419,14 +450,17 @@
                 dateLabel.textContent = clickedDate;
                 dateInput.value = clickedDate;
                 idInput.value = '';
-                deleteBtn.style.display = 'none';
                 contentInput.value = '';
                 selectedMood = '';
                 moodButtons.forEach(b => b.classList.remove("active"));
                 tempInput.value = '';
                 weatherInput.value = '';
 
-                //서버에서 날씨 정보가져오기
+                editBtn.style.display = 'none';
+                deleteBtn.style.display = 'none';
+                document.querySelector('.btn-save').style.display = 'block';
+                document.querySelector('.btn-cancel').style.display = 'block';
+
                 const weatherData = await fetchWeatherData(clickedDate);
                 weatherInput.value = weatherData.weather;
                 tempInput.value = weatherData.temperature;
@@ -489,7 +523,7 @@
                     const weather = weatherVal && weatherMap[weatherVal] ? weatherMap[weatherVal] : '';
                     const temperature = (tempVal != null) ? tempVal : '정보없음';
 
-                    return { weather, temperature };
+                    return {weather, temperature};
                 }
             } catch (err) {
                 console.log(err);
@@ -548,7 +582,7 @@
             e.preventDefault();
 
             const diaryData = {
-                diaryId:idInput.value||null,
+                diaryId: idInput.value || null,
                 date: dateInput.value,
                 weather: weatherInput.value,
                 temperature: parseFloat(tempInput.value) || 0,
@@ -613,15 +647,169 @@
         });
 
         editBtn.addEventListener("click", () => {
-            // 수정 가능하게 전환
             dateInput.removeAttribute("readonly");
             contentInput.removeAttribute("readonly");
             tempInput.removeAttribute("readonly");
             weatherInput.removeAttribute("disabled");
-            moodButtons.forEach(b => b.removeAttribute("disabled"));
 
-            editBtn.style.display = "none"; // 수정 버튼 숨기기
-            alert("수정 모드로 전환되었습니다!");
+            moodButtons.forEach(b => {
+                b.style.display = "block";
+                b.removeAttribute("disabled");
+            });
+            document.getElementById("moodDisplay").style.display = "none";
+
+            editBtn.style.display = "none";
+            deleteBtn.style.display = "block";
+            document.querySelector('.btn-save').style.display = 'block';
+        });
+
+        // 댓글 등록
+        document.getElementById("commentSubmit").addEventListener("click", async (e) => {
+            const diaryId = document.getElementById("diaryId").value;
+            const comment = document.getElementById("commentInput").value.trim();
+            if (!comment) return alert("댓글을 입력하세요");
+
+            const res = await fetch("/comment/add", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({diaryId, comment, parentId: null}),
+                credentials: 'include'
+            });
+
+            if (res.ok) {
+                document.getElementById("commentInput").value = "";
+                loadComments(diaryId);
+            } else {
+                alert("댓글 등록 실패");
+            }
+        });
+
+        // 댓글 불러오기
+        async function loadComments(diaryId) {
+            const listContainer = document.getElementById("commentList");
+            listContainer.innerHTML = "<p class='text-muted small'>불러오는 중...</p>";
+
+            const res = await fetch(`/comment/list/${diaryId}`, {credentials: 'include'});
+            if (res.ok) {
+                const comments = await res.json();
+                listContainer.innerHTML = "";
+                console.log("댓글 데이터: " + comments);
+                renderComments(comments, listContainer);
+            } else {
+                listContainer.innerHTML = "<p class='text-danger small'>댓글을 불러올 수 없습니다.</p>";
+            }
+        }
+
+        // 댓글 렌더링 (재귀)
+        function renderComments(comments, container, parentId = 0) {
+            comments
+                .filter(c => c.parentId == parentId)
+                .forEach(c => {
+                    const div = document.createElement("div");
+                    div.classList.add("mb-2", "border", "p-2", "rounded");
+                    div.style.marginLeft = parentId ? "20px" : "0";
+
+                    div.innerHTML = `
+                <div class="d-flex justify-content-between">
+                                <strong>${c.nickname}</strong>
+                                <small class="text-muted">${new Date(c.createdAt).toLocaleString()}</small>
+                </div>
+                <div>${c.comment}</div>
+                <div class="mt-1">
+                    <button type="button" class="btn btn-sm btn-outline-secondary reply-btn" data-id="${c.commentId}">답글</button>
+                    ${c.userId === currentUser ? `
+                        <button type="button" class="btn btn-sm btn-outline-warning edit-btn" data-id="${c.commentId}">수정</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${c.commentId}">삭제</button>
+                    ` : ""}
+                </div>
+                <div class="edit-form mt-2" id="edit-form-${c.commentId}" style="display:none;">
+                    <input type="text" class="form-control mb-1" value="${c.comment}">
+                    <button type="button" class="btn btn-sm btn-primary">저장</button>
+                </div>
+            `;
+
+                    container.appendChild(div);
+
+                    renderComments(comments, container, c.commentId);
+                });
+        }
+
+        document.getElementById("commentList").addEventListener("click", async (e) => {
+            if (e.target.classList.contains("edit-btn")) {
+                const id = e.target.dataset.id;
+                const form = document.getElementById(`edit-form-${id}`);
+                form.style.display = form.style.display === "none" ? "block" : "none";
+            }
+            if (e.target.matches(".edit-form button")) {
+                const form = e.target.closest(".edit-form");
+                const id = form.id.split("-")[2];
+                const input = form.querySelector("input");
+                const comment = input.value.trim();
+                const diaryId = document.getElementById("diaryId").value;
+                if (!comment) return alert("내용을 입력하세요");
+
+                const res = await fetch(`/comment/update/${id}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ comment }),
+                    credentials: "include"
+                });
+
+                if (res.ok) {
+                    alert("댓글 수정 완료!");
+                    loadComments(diaryId);
+                } else {
+                    alert("수정 실패");
+                }
+            }
+            if (e.target.classList.contains("reply-btn")) {
+                const id = e.target.dataset.id;
+                const form = document.getElementById(`reply-form-${id}`);
+                if (form) {
+                    form.style.display = form.style.display === "none" ? "block" : "none";
+                }
+            }
+
+            if (e.target.matches(".reply-form button")) {
+                const form = e.target.closest(".reply-form");
+                const parentId = form.id.split("-")[2];
+                const input = form.querySelector("input");
+                const comment = input.value.trim();
+                const diaryId = document.getElementById("diaryId").value;
+
+                if (!comment) return alert("답글을 입력하세요");
+
+                const res = await fetch("/comment/add", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({diaryId, comment, parentId}),
+                    credentials: "include"
+                });
+
+                if (res.ok) {
+                    input.value = "";
+                    loadComments(diaryId); // 🔄 댓글 갱신
+                } else {
+                    alert("답글 등록 실패");
+                }
+            }
+
+            if (e.target.classList.contains("delete-btn")) {
+                const id = e.target.dataset.id;
+                if (!confirm("삭제하시겠습니까?")) return;
+                const diaryId = document.getElementById("diaryId").value;
+
+                const res = await fetch(`/comment/delete/${id}`, {
+                    method: "POST",
+                    credentials: "include"
+                });
+
+                if (res.ok) {
+                    loadComments(diaryId);
+                } else {
+                    alert("삭제 실패");
+                }
+            }
         });
 
     });

@@ -54,14 +54,30 @@
         .btn-save:hover {
             background: #ffd3b5;
         }
+        .btn-outline-secondary {
+            border-color: #ffb896;
+            color: #ff7b9c;
+        }
+        .btn-outline-secondary:hover {
+            background: #ffb896;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
+    <div class="d-flex justify-content-start mb-2">
+        <a href="/" class="btn btn-outline-secondary btn-sm">
+            &lt; 홈으로
+        </a>
+    </div>
+
     <h3 class="text-center">내 정보 수정</h3>
 
     <!-- 개인정보 수정 -->
     <div>
+
         <div class="section-title">1️⃣ 개인정보 수정</div>
         <form id="userInfoForm" enctype="multipart/form-data">
             <div class="text-center mb-3">

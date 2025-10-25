@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name="tb_couple")
 public class Couple {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ 자동 증가 설정
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "couple_id")
     private int coupleId;
 
