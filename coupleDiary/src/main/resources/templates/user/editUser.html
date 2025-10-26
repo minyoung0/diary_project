@@ -1,69 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
+<link rel="stylesheet" href="../css/editUser.css">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>내 정보 수정 | CoupleDiary</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background: #fef6f1;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        .container {
-            max-width: 700px;
-            background: #fff;
-            margin-top: 50px;
-            padding: 30px 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(255, 184, 150, 0.3);
-        }
-
-        h3 {
-            color: #ff7b9c;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            border-left: 5px solid #ffb896;
-            padding-left: 10px;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid #ffb896;
-            object-fit: cover;
-        }
-
-        .btn-save {
-            background: #ffb896;
-            color: #5a3a2a;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 20px;
-        }
-
-        .btn-save:hover {
-            background: #ffd3b5;
-        }
-        .btn-outline-secondary {
-            border-color: #ffb896;
-            color: #ff7b9c;
-        }
-        .btn-outline-secondary:hover {
-            background: #ffb896;
-            color: white;
-        }
-
-    </style>
 </head>
 <body>
 <div class="container">
@@ -81,21 +23,21 @@
         <div class="section-title">1️⃣ 개인정보 수정</div>
         <form id="userInfoForm" enctype="multipart/form-data">
             <div class="text-center mb-3">
-                <img id="profilePreview" class="profile-img" src="/profileimg/img.png" alt="프로필 이미지" />
+                <img id="profilePreview" class="profile-img" src="/profileimg/img.png" alt="프로필 이미지"/>
             </div>
             <div class="mb-3 text-center">
                 <label for="profileImg" class="form-label">프로필 사진 변경</label>
-                <input type="file" id="profileImg" name="profileImg" accept="image/*" class="form-control" />
+                <input type="file" id="profileImg" name="profileImg" accept="image/*" class="form-control"/>
             </div>
 
             <div class="mb-3">
                 <label for="nickname" class="form-label">닉네임</label>
-                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="닉네임 입력" />
+                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="닉네임 입력"/>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">비밀번호 수정</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="새 비밀번호 입력" />
+                <input type="password" id="password" name="password" class="form-control" placeholder="새 비밀번호 입력"/>
             </div>
 
             <div class="text-center">
@@ -110,7 +52,7 @@
         <form id="coupleForm">
             <div class="mb-3">
                 <label for="startDate" class="form-label">사귄 날짜 수정</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" />
+                <input type="date" id="startDate" name="startDate" class="form-control"/>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-save">수정 저장</button>
@@ -132,7 +74,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', async () => {
-        const res = await fetch('/CheckAuth', { credentials: 'include' });
+        const res = await fetch('/CheckAuth', {credentials: 'include'});
         if (res.ok) {
             const data = await res.json();
             document.getElementById('nickname').value = data.nickname || '';
@@ -187,7 +129,7 @@
         const res = await fetch("/couple/updateAnniversary", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ anniversary: date }),
+            body: JSON.stringify({anniversary: date}),
             credentials: "include"
         });
 
