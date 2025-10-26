@@ -43,11 +43,13 @@ public class CommentController {
         }
     }
 
+    //댓글 조회
     @GetMapping("/list/{diaryId}")
     public ResponseEntity<?> list(@PathVariable int diaryId) {
         return ResponseEntity.ok(commentRepository.getCommentsByDiaryId(diaryId));
     }
 
+    //댓글 삭제
     @PostMapping("/delete/{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable int commentId, Principal principal) {
         try {
